@@ -1,0 +1,70 @@
+<!-- 프로그래밍의 비교 기능은 이 자체로 효용이 크기보다는
+     조건문에서 더 효율적으로 사용된다. 
+
+     <데이터 타입>
+     1. number : 1, -10
+     2. string : "a", "b"
+     3. boolean : true, false / true = 1, false = 0
+     4. undefined : undefined 값을 아직 할당한 것이 없음
+     5. null : null 의도적으로 값이 없음 
+     c.f) NaN : 숫자가 아님 (0/0 계산할 수 없음)
+-->
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <script type="text/javascript">
+        // 대입 연산자
+            var a = 1;
+
+        // 비교 연산자 : 결과값은 Boolean으로 출력 (true/false) 
+            // == 동등 연산자(=equal operator) : 좌항과 우항을 비교해서 같으면 true, 다르면 false
+            alert(1 == 2); // false
+            alert(1 == 1); // true
+            alert("one" == "two"); // false
+            alert('one' == 'one'); // true
+
+            // === 일치 연산자(=strict equal operator): 좌항과 우항이 '정확'하게 같으면 true, 다르면 false
+            alert(1 == '1') // true 어쨋든 값(정보)이 1이면 됨 => 프로그래밍 개발/디버깅 측면에서는 좋지 않으므로 사용 비추
+            alert(1 === '1') // false 값뿐만 아니라 데이터타입도 같아야 함 => 사용 추천
+        
+                // null은 값이 없다(프로그래머가 의도적으로 값을 넣지 않음)는 뜻 / null 값이 변수에 할당됨 
+                // unefined는 값이 정의되지 않았다(프로그래머가 의도하지 않은 상황)는 뜻 / 아무 값도 변수에 할당 안된 상태
+            alert(null == undefined); // true 어쨌든 값이 없다
+            alert(null === undefined); // false 프로그래머가 값이 없는 것을 의도한 것과 의도하지 않은 것은 엄격히 말하면 다르다 
+            
+            alert(true == 1) // true
+            alert(true == 2) // false
+            alert(true == 3) // false
+
+            alert(true == 1) // true
+            alert(true === 1) // false
+            alert(true == '1') // true
+            alert(true === '1') // false
+
+                // NaN은 숫자가 아니다, 계산할 수 없다는 뜻. 0/0과 같은 연산의 결과로 만들어지는 특수한 데이터 형태
+            alert(0/0) // Nan 
+            alert(0 === -0) // true
+            alert(NaN === NaN) // false
+
+            // != 부정 연산자 (inequality operator)
+            alert(1 != 2); // true
+            alert(1 != 1); // false
+            alert('one' != 'two') // true
+            alert('one' == 'one') // false
+
+            // !== 정확하게 같지 않다 
+
+            // > 부등호 : 숫자 비교
+            alert(10>20);   //false
+            alert(10>1);    //true
+            alert(10>10);   //false
+
+            // >= 부등호 : 숫자 비교
+            alert(10>=20);      //false
+            alert(10>=1);       //true
+            alert(10>=10);      //true
+        </script>
+    </body>
+</html>
