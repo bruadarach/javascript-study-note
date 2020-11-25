@@ -1,0 +1,18 @@
+body {
+    background-color: lightblue;
+}
+
+h1 {
+    color: white;
+}
+
+
+/*  CSS에서는 어떻게 <h1>을 바꾸지? 
+    일단, html에서 <h1>에 고유 id "title"을 줬음
+    CSS에서는 아래와 같이 써서 접근/선택해 
+
+#title {
+
+}
+
+*/
