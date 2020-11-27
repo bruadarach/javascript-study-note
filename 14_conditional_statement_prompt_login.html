@@ -1,0 +1,52 @@
+<!-- 
+    1. 변수와 비교연산자 
+    2. prompt() : 팝업창을 띄워 사용자로부터 어떤 정보/값을 받을 수 있는 기능
+                  사용자가 입력한 값은 console창에 뜸
+    3. alert VS prompt     
+-->
+
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <script type="text/javascript">
+
+        // 1. 변수 
+            a = 1; 
+            if (a === 1) {
+                alert(1);
+            } // 1 출력 
+
+        // 2. prompt
+            prompt("당신이 좋아하는 나라는?")
+
+        // 3. alert VS prompt 비교
+            alert(prompt("어떤 것이 먼저 실행되나요?")) // prompt 입력값이 alert 경고창 값이됨.
+
+            alert(prompt("당신이 좋아하는 숫자는?")*2) //  7 입력하면, 14 출력 // 문자 입력하면 NaN 출력
+            alert(prompt("당신이 좋아하는 단어는?")+"!") //  '사랑' 입력하면, '사랑!'' 출력
+
+        // 4. 예제 : 조건문 + 대입연산자
+            var id = prompt('아이디를 입력해주세요.');
+            if(id=='suji') {
+                alert('아이디가 일치합니다.');
+            } else {
+                alert('아이디가 일치하지 않습니다.');
+            }
+
+        // 5. 예제 : 조건문 안에 또 다른 조건문 추가 
+            var id = prompt('아이디를 입력해주세요.');
+            if(id=='suji') {
+                var password = prompt('비밀번호를 입력해주세요');
+                if(password == '1111'){
+                    alert('로그인 하셨습니다. '+id+'님 반갑습니다.');
+                } else {
+                    alert('비밀번호가 다릅니다.');
+                }
+            } else {
+                alert('아이디가 일치하지 않습니다.');
+            }
+        </script>
+    </body>
+</html>
