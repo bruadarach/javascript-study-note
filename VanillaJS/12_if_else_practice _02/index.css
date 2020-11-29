@@ -1,0 +1,30 @@
+body {
+    background-color: lightblue;
+}
+
+
+/*  CSS에서는 어떻게 <h1>을 바꾸지? 
+    일단, html에서 <h1>에 고유 id "title"을 줬음
+    CSS에서는 아래와 같이 써서 접근/선택해 
+
+    #title {}
+*/
+
+h1 {
+    color: white;
+    transition: color 1.0s ease-in-out;
+}
+
+
+/*  CSS에서 clsss를 만드는 방법?
+    .color                  
+*/
+
+.clicked {
+    color: lightpink;
+}
+
+.btn {
+    cursor: pointer;
+    /* 마우스커서를 포인터로 변경함 */
+}
