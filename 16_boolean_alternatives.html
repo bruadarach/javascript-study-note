@@ -1,0 +1,60 @@
+<!-- 
+    0 = false
+    1 = true
+    
+    <JS에서 false로 간주되는 데이터형>
+        - 빈문자열 '' 
+        - if문 조건으로 !(부정) 연산자를 사용할 경우 
+        - undefined
+        - 값이 할당되지 않은 변수
+        - null
+        - NaN
+-->
+
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <script type="text/javascript">
+        // 0, 1
+            if(0) {
+                alert(1)
+            }
+
+            if(1) {
+                alert(2) // 이것만 실행됨
+            }
+
+        // 빈문자열
+            if('') {
+                alert('빈문자열');
+            }
+
+            if('문자열있다') {
+                alert('문자열있다'); // 이것만 실행됨
+            }
+
+        //  undefined
+            if(undefined) {
+                alert('undefined')
+            }
+
+        // 값이 할당되지 않은 변수 undefined
+            var a;
+            if(a) {
+                alert('값이 할당되지 않은 변수')
+            }
+        
+        // null
+            if(!null) {
+                alert('null이 아닙니다') // 이것만 실행됨
+            }
+
+        // NaN
+            if(!NaN) {
+                alert('NaN이 아닙니다') // 이것만 실행됨
+            }
+        </script>
+    </body>
+</html>
