@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <script type="text/javascript">
+
+        /* Assigning values - let */
+        let num1 = 100;
+        let num2 = 500;
+        let total = num1+num2;
+        console.log(total) // 600
+        
+        num1 = 2000;
+        console.log(num1) // 2000
+        console.log(total) // 600 not changed due to the updated value of num1
+
+
+        /* Updating values - numbers */
+        score = 5;
+        score += 5;
+        score -= 1;
+        score *= 10;
+        score /= 2;
+
+        /* Updating values - numbers - increase/decrease by 1 */
+        let numLives = 9;
+        numLives -= 1; // 8
+        console.log(numLives) // 8
+      
+        console.log(numLives --) // 8 // shows current value, but it is decreased by 1
+        console.log(numLives) // 7
+
+        console.log(numLives --) // 7
+        console.log(numLives) // 6
+
+        console.log(numLives ++) // 6 // shows current value, but it is increased by 1
+        console.log(numLives) // 7
+
+        console.log(numLives ++) // 7
+        console.log(numLives ++) // 8
+
+
+        /* Assigning values - const */
+        /* 'const' works just like let, except you CANNOT change the value */
+
+        const age = 25; 
+        console.log(age) // 25 
+        
+        /*
+        const age = 25;
+        age = 30; // ERROR! Uncaught TypeError: Assignment to constant variable.
+
+        const age = 25;
+        age = age + 1; // ERROR! Uncaught TypeError: Assignment to constant variable.
+        */
+
+        /* Why use 'const'? 
+            : Once we cover Arrays & Objects, we will see other situations where 'const' makes sense over let */
+        const pi = 3.14159;
+        const daysInWeek = 7;
+        const minHeightForRide = 60;
+
+
+        /* Assigning values - var */
+        /* 'var' is the old variable keyword. 
+            Before 'le' and 'const', var was the only way of declaring variables.
+            These days, there isn't really a reason to use it */
+        var firstLove = 25;
+        firstLove += 1;
+        console.log(firstLove) // 26
+
+
+        /* variable naming conventions */
+
+            //-> case-sensitive
+            //-> no start with digit! let 1suer = 1;
+            //-> lower camel case without space, no uppercase start! let currentDate = 2021;
+        
+        </script>
+    </body>
+</html>
