@@ -1,0 +1,82 @@
+<!-- Strings 
+    - "String of Characters"
+    - Strings are another primitive type in JavaScript.
+    - They represent text and must be wrapped in quotes. -->
+
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <script type="text/javascript">
+        
+        let firstName = 'Su'   // single quotes work
+        let lastName = "Ji"         // double quotes work
+
+        console.log('23')       // 23
+        console.log(typeof '23') // string // string != number
+        console.log(23) // 23
+        console.log(typeof 23) // number
+
+        console.log("I told him 'I still love you' ")
+        console.log('He said "Me too" ')
+
+        /* Indices & Length : strings are indexed */
+        /* Each character has a corresponding index(a positional number) */
+        let animal = "Lion"
+        console.log(animal[0]) // L
+        console.log(animal[1]) // i
+        console.log(animal[2]) // o
+        console.log(animal[3]) // n
+        
+        console.log(animal[-1]) // undefined
+        console.log(animal[99]) // undefined
+
+        let phone = "(02)1234-7777"
+        console.log(phone[0]) // '('
+        console.log(phone.length) // 13
+        console.log('JavaScript'.length) // 10
+
+        /* String Concatenation */
+        console.log('JavaScript' + ' is fun!') // JavaScript is fun!
+        
+        /* string cannot update a character, but can overwrite the whole by reassigning */
+        console.log(phone[0] = 'j') // j
+        console.log(phone)
+
+        let givenName = 'Lucky'
+        let familyName = 'Blue'
+        let fullName = givenName + " " + familyName
+        console.log(fullName) // Lucky Blue
+        
+        /* not possible : string + number concatenation */
+        console.log(1+'hi')
+        let result = 1+'hi' // in this case, Python occuers TypeError: unsupported operand type(s) for +: 'int' and 'str'
+        console.log(typeof result) // string
+
+        /* slicing does not work in a python way */ 
+        // console.log(animal[1:3]) // Uncaught SyntaxError: Unexpected token ':'
+        
+        
+        /* String Methods */
+        /* Methods are built-in actions we can perform with individual strings
+            - Methods help us do thinkgs like 
+                - Searching within a string
+                - Replacing part of a string
+                - Changing the casing of a string 
+            - String Methods List : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String */
+        
+        ///// String.toUpperCAse() ///// => Python String.upper()
+        let msg = 'I miss you';
+        console.log(msg.toUpperCase()) // I MISS YOU
+        let angry = 'Leave Me Alone!'
+        console.log(angry.toLowerCase()) // leave me alone!
+        console.log(msg) // I miss you // the same, not changed!
+
+        ///// String.trim() ///// => Python String.strip()
+        let msag = '     I miss you     '
+        console.log(msg.trim()) // I miss you
+
+        </script>
+    </body>
+</html>
