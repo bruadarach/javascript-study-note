@@ -16,6 +16,48 @@
     # "".indexOf('')
     console.log("suji".indexOf('q')); // -1
     console.log("cool".indexOf('o')); // 1
+
+    # "".toUpperCase() - (NO inplace)
+    console.log("Suji".toUpperCase()) // SUJI
+
+    # "".toLowerCase() - (NO inplace)
+    console.log("Suji".toUpperCase()) // suji
+
+    # "".includes("")
+    let a = 'Lovely';
+    let b = 'Love';
+    console.log(a.includes(b)) // true
+
+    # (NO inplace) str.slice(beginIndex, endIndex) //=> (inclusive, exclusive)
+    let a = 'Lovely Lucky';
+    console.log(a.slice(0)) // Lovely Lucky
+    console.log(a.slice(0,1)) // L
+    console.log(a.slice(1)) // ovely Lucky
+    console.log(a.slice(-1)) // y
+    console.log(a.slice(-5)) // Lucky
+
+    let b = ['love', 'family', 'dream']
+    console.log(b.slice(0)) // [ 'love', 'family', 'dream' ]
+    console.log(b.slice(0,1)) // [ 'love' ]
+    console.log(b.slice(1)) // [ 'family', 'dream' ]
+    console.log(b.slice(-1)) // [ 'dream' ]
+    console.log(b.slice(-3)) // [ 'love', 'family', 'dream' ]
+
+    # Mutability - IMMUTABLE! (comparing String vs Array, Object)
+    let myArr = ["b", "e", "a", "m"];
+    myArr[0] = "s";
+    console.log(myArr); // 'seam'
+
+    // TypeError: Cannot assign to read only property '0' of string 'beam'
+    let myStr = "beam";
+    myStr[0] = "s"; 
+    console.log(myStr); // 'beam'
+
+    // Immutable === mutate of the original data  && Immutable !== update
+    //IMmutable data types = not composite types // number, string ,boolean
+    let myNum = 42;
+    myNum += 8; // UPDATE myNum = myNum + 8;
+    console.log(myNum); // 50
 -->
 
 <html>
