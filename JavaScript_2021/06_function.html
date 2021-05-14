@@ -1,0 +1,192 @@
+<!--
+    - function name
+    - (parameters)
+    - invoke or call the function
+
+    function thisIsMyName(parameter1, parameter2) {
+    }
+    thisIsMyName("argument1", "argument2")
+
+
+    function testMe() {
+    console.log("test me please!")
+    }
+    // nothing happens! 
+    testMe(); // now, invoke the function, so something happens!
+
+
+    # return value
+    function addTwo(num1, num2) {
+    num1 + num2;
+    }
+    console.log(addTwo(1,2)); // undefined
+
+
+    function addTwo(num1, num2) {
+    return num1 + num2;
+    // anything below the first return will NOT be run! 
+    }
+    console.log(addTwo(1,2)); // => 3
+
+
+    function averageOfFour(num1, num2, num3, num4) {
+        let sum = num1 + num2 + num3 + num4;
+        let average = sum / 4;
+        return average
+    }
+    console.log(averageOfFour(10,10,15,5)); // 10
+    console.log(averageOfFour(1,2,3,4)); // 2.5  
+
+
+    function addThreeNumbers(num1, num2, num3) {
+        return num1 + num2 + num3;
+        }
+
+    addThreeNumbers(1, 2); // => NaN
+    '''
+    Since addThreeNumbers has three defined parameters and only two passed in arguments 
+    then the num3 paramenter will be set to undefined(the default value for a variable). 
+    So we'd be adding num1(1) + num2(2) + num3(undefined). 
+    Since undefined is not a number 
+    - and thus can't be added to 3 
+    - then the answer we'll receive back the value of NaN(Not a Number).
+    '''
+
+
+    # mutually exclusive
+
+    function potatoSpeak() {
+        console.log("I am potato!");
+        }
+        function sadSpeak() {
+        console.log("I am NOT potato :(");
+        }
+
+        function isThisPotato(word) {
+        if (word === "potato") {
+            potatoSpeak();
+        } else {
+            sadSpeak();
+        }
+    }
+
+
+    # Practice to make 10 functions
+
+    // Example
+    function sayHello(name) {
+    let msg = "Hello, " + name + ". How are you?";
+    return msg;
+    }
+
+    console.log(sayHello("world"));
+
+
+    // 1 
+    function myAge(age) {
+        let msg = "My age is " + age + "." 
+        return msg;
+    }
+    console.log(myAge(32));
+
+
+    // 2 
+    function dogBreed(breed) {
+        if (breed === "Puddle") {
+        return "Lucky is a " + breed + "!"
+        } else {
+        return "I don't know!"
+        }
+    }
+    console.log(dogBreed("Puddle"));
+    console.log(dogBreed("Buldog"));
+
+
+    // 3
+    function MyFavoriteJuice(fruit) {
+    return "My favorite juice is " + fruit + " juice!"
+    }
+    console.log(MyFavoriteJuice("banana"));
+
+
+    // 4
+    function age20(num) {
+        if (num > 20) {
+            return "he is more than 20 years old!" 
+        } 
+    else if (num === 20) {
+            return "he is 20 years old!"
+        } else {
+            return "he is less than 20 years old!"
+        }
+    }
+    console.log(age20(20));
+
+
+    // 5 
+    function nameChecker(name) {
+        if (name === "Sujeong Ji") {
+        return "Logged in!"
+    } else {
+        return "Check your name please"
+    }
+    }
+    console.log(nameChecker("Sujeong Ji"));
+
+
+    // 6 
+    function downloadApp(brand) {
+        if (brand === "Apple") {
+            return "If you use a(n) " + brand+ " smartphone, go to the App Store to download."
+        } else if (brand === "Galaxy") {
+            return "If you use " + brand+ " smartphone, go to the Play Store to download."
+        }
+    }
+    console.log(downloadApp("Apple"));
+    console.log(downloadApp("Galaxy"));
+
+
+    // 7 
+    function oppositeFact(boolean) {
+        return !(boolean)
+    }
+    console.log(oppositeFact(true));
+
+
+    // 8
+    function lengthOfList(list) {
+        return "the length of the list is " + list.length
+    }
+    console.log(lengthOfList([1,2,3,4,5,true,false,"wow",[6,7,8,9,10]]));
+
+    // 9 
+    function firstIndexOfLetter(string) {
+        return string[0] + " is the first letter."
+    }
+    console.log(firstIndexOfLetter("Study"));
+
+
+    // 10
+    function lastIndexOfLetter(string) {
+        return string[string.length-1] + " is the last letter."
+    }
+    console.log(lastIndexOfLetter("Study"));
+
+
+    # function expression syntax 
+        function declaration syntax
+        function sayHello() {
+        console.log('hello');
+        }
+        
+        sayHello(); //  hello
+        console.log(sayHello); // [Function: sayHello] // don't refer to in array, just print out function
+
+        // function express syntax
+        let sayHello = function() {
+        console.log('hello');
+        }; // should put ';' at the end!
+        
+        sayHello(); //  hello
+        console.log(sayHello); // [Function] // don't refer to in array, just print out function
+-->
