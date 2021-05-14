@@ -1,0 +1,128 @@
+<!--
+    # Array
+    let rainbowColors = ["red","green","blue"];
+    console.log(rainbowColors[0]); //=> red
+
+    # [].length
+    console.log(["red","green","blue"].length) // 3
+    console.log([].length) // 0
+
+
+    # Composite Data Tyles
+    let composite = [0,true,"apple",[1]]
+
+
+    # Array Methods
+    # - concat
+    let first = [1,2,3];
+    let second = [4,5,6];
+    let thrid = first.concat(second);
+
+    console.log(thrid); // [ 1, 2, 3, 4, 5, 6 ]
+    console.log(first); // [ 1, 2, 3 ]
+
+
+    # str.slice(beginIndex, endIndex) //=> (inclusive, exclusive)
+    # slice is IMMUTABLE, splice is MUTABLE!!!
+    let b = ['love', 'family', 'dream']
+    console.log(b.slice(0)) // [ 'love', 'family', 'dream' ]
+    console.log(b.slice(0,1)) // [ 'love' ]
+    console.log(b.slice(1)) // [ 'family', 'dream' ]
+    console.log(b.slice(-1)) // [ 'dream' ]
+    console.log(b.slice(-3)) // [ 'love', 'family', 'dream' ]
+
+
+    # Mutability - MUTABLE! (comparing String vs Array, Object)
+    let myArr = ["b", "e", "a", "m"];
+    myArr[0] = "s";
+    console.log(myArr); // 'seam'
+
+    // TypeError: Cannot assign to read only property '0' of string 'beam'
+    let myStr = "beam";
+    myStr[0] = "s"; 
+    console.log(myStr); // 'beam'
+
+    // Immutable === mutate of the original data  && Immutable !== update
+    //IMmutable data types = not composite types // number, string ,boolean
+    let myNum = 42;
+    myNum += 8; // UPDATE myNum = myNum + 8;
+    console.log(myNum); // 50
+
+
+    # Some Common Array Methods // (function, return value)
+    - push // (add last, new length)
+    - pop  // (remove last, removed one)
+    - shift // (add first, new length)
+    - unshift  // (remove first, removed one)
+
+    # Array.push() - add last - return new Array.length()
+    let people = ['Suji', 'Minji', 'lucky'];
+    console.log(people.push('Family')); // 4 // people.length
+    console.log(people); // [ 'Suji', 'Minji', 'lucky', 'Family' ]
+
+    people.push(1,2,3);
+    console.log(people); // [ 'Suji', 'Minji', 'lucky', 'Family', 1, 2, 3 ]
+
+    # Array.pop() - remove last - return the removed element
+    let people = ['Suji', 'Minji', 'lucky'];
+    let lastperson = people.pop();
+
+    console.log(lastperson); // lucky
+    console.log(people); // [ 'Suji', 'Minji' ]
+
+    # Array.shift() - remove first - return the removed element
+    let people = ['Suji', 'Minji', 'lucky'];
+    console.log(people.shift()); // Suji
+    console.log(people); // [ 'Minji', 'lucky' ]
+
+    # Array.unshift() - push - return new Array.length()
+    let people = ['Suji', 'Minji', 'lucky'];
+    console.log(people.unshift('Papa')); // 4
+    console.log(people.unshift('Mama')); // 5
+    console.log(people); // [ 'Mama', 'Papa', 'Suji', 'Minji', 'lucky' ]
+
+
+    # Array.splice()
+        # slice is IMMUTABLE, splice is MUTABLE!!! 
+        let arr = ['a', 'b', 'c', 'd', 'e'];
+        arr.slice(1, 3);
+        console.log(arr); // ['a', 'b', 'c', 'd', 'e'];
+
+        let arr = ['a', 'b', 'c', 'd', 'e'];
+        arr = arr.slice(3);
+        console.log(arr); // [ 'd', 'e' ]
+
+    //=> Array add, remove, replace
+    //=> array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+
+    // Addtion : Array.splice(idx,0, "new_value");
+    let family = ['Papa', 'Mama', 'Suji', 'Minji'];
+    family.splice(0,0,'1','2')
+    console.log(family); // [ '1', '2', 'Papa', 'Mama', 'Suji', 'Minji' ]
+
+    let family = ['Papa', 'Mama', 'Suji', 'Minji'];
+    family.splice(family.length,0,'1')
+    console.log(family) // [ 'Papa', 'Mama', 'Suji', 'Minji', '1' ]
+
+    let family = ['Papa', 'Mama', 'Suji', 'Minji'];
+    family.splice(-1,0,'1')
+    console.log(family) // [ 'Papa', 'Mama', 'Suji', '1', 'Minji' ]
+
+    // Remove : Array.splice(strat_idx, delete_number, "new_value");
+    let family = ['Papa', 'Mama', 'Suji', 'Minji'];
+    family.splice(0)
+    console.log(family) // []
+
+    let family = ['Papa', 'Mama', 'Suji', 'Minji'];
+    family.splice(0,2) 
+    console.log(family) // [ 'Suji', 'Minji' ]
+
+    let family = ['Papa', 'Mama', 'Suji', 'Minji'];
+    family.splice(2,10)
+    console.log(family) // [ 'Papa', 'Mama' ]
+
+    // Replacement : Array.splice(start_idx,delete_idx, "new_value");
+    let family = ['Papa', 'Mama', 'Suji', 'Minji'];
+    family.splice(0,2,'1')
+    console.log(family) // [ '1', 'Suji', 'Minji' ]
+-->
