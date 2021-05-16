@@ -189,4 +189,27 @@
         
         sayHello(); //  hello
         console.log(sayHello); // [Function] // don't refer to in array, just print out function
+
+
+    # Helper Function
+    //=> 1. return if it is even or not
+    let isEven = function(num) {
+    return num%2 === 0;
+    };
+    // console.log(isEven(10)); // true
+
+
+    //=> 2. return only the even ones in a new array
+    let extractEvens = function(numbers) {
+    let evens = [];
+    for (let i=0;i<numbers.length;i++) {
+        let num = numbers[i]
+        // if the num is even, then push it to the evens array
+        if (isEven(n)) { // if isEven(num) === true
+            evens.push(num);
+            }
+        }
+    return evens;
+    };
+    console.log(extractEvens([1,2,3,4,5])); // [ 2, 4 ]
 -->
