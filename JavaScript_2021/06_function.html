@@ -203,7 +203,7 @@
     let extractEvens = function(numbers) {
     let evens = [];
     for (let i=0;i<numbers.length;i++) {ㅕㄴ히
-    
+
         let num = numbers[i]
         // if the num is even, then push it to the evens array
         if (isEven(n)) { // if isEven(num) === true
@@ -213,4 +213,16 @@
     return evens;
     };
     console.log(extractEvens([1,2,3,4,5])); // [ 2, 4 ]
+
+
+    # "String".repeat(count)
+    function uncompress(str) {
+        let result = '';
+        for (let i=1;i<str.length;i+=2) {
+            result += str[i-1].repeat(Number(str[i]))
+        }
+            return result;
+        };
+
+    console.log(uncompress('x3y4z2')); // 'xxxyyyyzz'
 -->
