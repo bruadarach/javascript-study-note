@@ -148,4 +148,24 @@
     let newStr = str.split("I").join("we");
     console.log(newStr); // 'we don't know what we want to eat'
 
+
+    # Math.max(...array) 
+    # Math.min(...array)
+    //=>Max & Min value in an array
+    
+    function maxInMatrix(matrix) {
+    maxValue = 0
+    for (let i=0;i<matrix.length;i++) {
+        if (maxValue < Math.max(...matrix[i])) {
+            maxValue = Math.max(...matrix[i]);
+        }
+    }
+    return maxValue;
+    }
+
+    matrix = [[11,  2,-99],
+            [20, 19, 10],
+            [47, 72, 56]]
+
+    console.log(maxInMatrix(matrix)); // 72
 -->
