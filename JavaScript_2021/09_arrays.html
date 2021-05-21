@@ -82,6 +82,17 @@
     console.log(people); // [ 'Mama', 'Papa', 'Suji', 'Minji', 'lucky' ]
 
 
+    # C.f) Array.push(...Array)
+    let a = [1,2,3,4];
+    let b = [5,6,7];
+
+    // console.log(a.push(b)) // 5
+    // console.log(a) // [ 1, 2, 3, 4, [ 5, 6, 7 ] ]
+
+    console.log(a.push(...b)); // 7
+    console.log(a) // [ 1, 2, 3, 4, 5, 6, 7 ]
+
+
     # Array.splice() === el=Array.pop(), Array.push(el)
         # slice is IMMUTABLE, splice is MUTABLE!!! 
         let arr = ['a', 'b', 'c', 'd', 'e'];
@@ -149,8 +160,8 @@
     console.log(newStr); // 'we don't know what we want to eat'
 
 
-    # Math.max(...array) 
-    # Math.min(...array)
+    # Math.max(...array) === Math.max.apply(Math, Array)
+    # Math.min(...array) === Math.min.apply(Math, Array)
     //=>Max & Min value in an array
     
     function maxInMatrix(matrix) {
@@ -168,4 +179,12 @@
             [47, 72, 56]]
 
     console.log(maxInMatrix(matrix)); // 72
+
+
+    # Array.reverse()
+
+    a = [1,2,3]
+    a.reverse()
+    console.log(a) // > Array [3, 2, 1]
+
 -->
