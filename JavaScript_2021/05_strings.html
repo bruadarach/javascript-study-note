@@ -68,7 +68,8 @@
 
 
     # C.f) Array.join("joiner") // Array to String
-    let words = ["run", "around", "the", "block"];
+    let words = ["run", "around", "the", "block"]
+    ;
     let sentence = words.join(" ");
     console.log(sentence); // 'run around the block'
     console.log(words); // [ 'run', 'around', 'the', 'block' ]
@@ -87,6 +88,16 @@
     console.log(string.endsWith('Suji')) // true
     console.log(string.endsWith('Suji', 15)) // true 
 
+    
+    # Number("String") -> String to Number
+    - Number("4") // => 4
+
+
+    # "String".repeat(number) - String * Number 
+    console.log('a'*3); // NaN
+    console.log('a'.repeat(3)); 'aaa'
+    console.log('a'.repeat(Number('3'))) // aaa
+
 -->
 
 <html>
@@ -103,6 +114,10 @@
         console.log(typeof '23') // string // string != number
         console.log(23) // 23
         console.log(typeof 23) // number
+
+        if (typeof str !== 'string') {
+        	return null;
+    }
 
         console.log("I told him 'I still love you' ")
         console.log('He said "Me too" ')
