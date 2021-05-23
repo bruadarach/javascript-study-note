@@ -1,0 +1,70 @@
+<!-- 
+    # new Set()
+    let result = new Set()
+
+    # ADDTION
+    result.add(1)
+    result.add(2)
+    result.add(2)
+    result.add(2)
+    result.add(3)
+    console.log(result) // Set { 1, 2, 3 }
+
+    # HAS
+    console.log(result.has(1)) // true
+    console.log(result.has(5)) // false
+
+    # DELETE
+    result.delete(3)
+    console.log(result)
+
+
+    # SIZE
+    console.log(result.size) // 2
+
+    # ITERATION - item
+    for (let item of result) 
+    console.log(item)
+    // 1
+    // 2
+
+    # ITERATION  - keys()
+    let result = new Set ([1, 2, 3, 4, 5, 5, 5])
+    console.log(result) // Set { 1, 2, 3, 4, 5 }
+
+    for (let item of result.keys()) 
+    console.log(item)
+    // 1
+    // 2
+    // 3
+    // 4
+    // 5
+    
+    # ITERATION  - values()
+    for (let item of result.values()) 
+    console.log(item)
+    // 1
+    // 2
+    // 3
+    // 4
+    // 5
+
+    # ITERATION - entries()
+    for (let [key, value] of result.entries()) 
+    // console.log(key)
+    // 1
+    // 2
+    // 3
+    // 4
+    // 5
+
+    # convert Set object to an Array object, with Array.from
+    const myArr = Array.from(result) 
+    console.log(myArr) // [ 1, 2, 3, 4, 5 ]
+
+    #converting between Set and Array
+    const result2 = new Set([1, 2, 3, 4, 5, 5, 5])
+    console.log([...result] ) // [ 1, 2, 3, 4, 5 ] 
+    console.log(result2.size) // 5
+    
+-->
