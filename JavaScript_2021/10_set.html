@@ -71,4 +71,11 @@
     console.log([...result] ) // [ 1, 2, 3, 4, 5 ] 
     console.log(result2.size) // 5
 
+    # CONVERT Array -> Set -> Array with Unique elements
+    array = [1,2,3,4,5,5,5]
+    return Array.from(new Set(array));
+    
+    array = [1,2,3,4,5,5,5]
+    myArr = new Set(array)
+    return [...myArr]
 -->
