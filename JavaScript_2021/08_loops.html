@@ -90,3 +90,66 @@
     // Mama Lucky
     // Suji Lucky
 -->
+
+
+<!--
+    # forEach(function() {})
+
+    let family = ['Papa', 'Mama', 'Suji', 'Lucky'];
+
+    family.forEach(function(member) {
+    console.log(member);
+    })
+
+    // Papa
+    // Mama
+    // Suji
+    // Lucky
+
+
+    family.forEach(function(member,i) {
+        console.log(member);
+        console.log(i);
+        console.log('---');
+
+    })
+    // Papa
+    // 0
+    // ---
+    // Mama
+    // 1
+    // ---
+    // Suji
+    // 2
+    // ---
+    // Lucky
+    // 3
+    // ---
+
+
+    family.forEach(function(member,i,array) {
+        console.log(member);
+        console.log(i);
+        console.log(array);
+        console.log('***');
+
+    })
+    // Papa
+    // 0
+    // [ 'Papa', 'Mama', 'Suji', 'Lucky' ]
+    // ***
+    // Mama
+    // 1
+    // [ 'Papa', 'Mama', 'Suji', 'Lucky' ]
+    // ***
+    // Suji
+    // 2
+    // [ 'Papa', 'Mama', 'Suji', 'Lucky' ]
+    // ***
+    // Lucky
+    // 3
+    // [ 'Papa', 'Mama', 'Suji', 'Lucky' ]
+    // ***
+
+
+-->
