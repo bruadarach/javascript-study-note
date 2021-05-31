@@ -1,0 +1,15 @@
+{
+    "scripts": {
+        "test": "mocha"
+    },
+    "devDependencies": {
+        "mocha": "^8.4.0"
+    },
+    "name": "test",
+    "version": "1.0.0",
+    "main": "app.js",
+    "dependencies": {},
+    "author": "bruadarach",
+    "license": "ISC",
+    "description": "mocha test"
+}
