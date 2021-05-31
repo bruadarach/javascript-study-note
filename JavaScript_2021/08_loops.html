@@ -93,7 +93,7 @@
 
 
 <!--
-    # forEach(function() {})
+    # Array.forEach(function() {})
 
     let family = ['Papa', 'Mama', 'Suji', 'Lucky'];
 
@@ -150,6 +150,29 @@
     // 3
     // [ 'Papa', 'Mama', 'Suji', 'Lucky' ]
     // ***
+-->
 
 
+<!--
+    # Array.map(function() {})
+
+    let family = ['Papa','Mama','Suji','Lucky'];
+
+    family.map(function(member){ // family.map(function(park, i, array) {})
+    console.log(member.toUpperCase());
+    })
+    // PAPA
+    // MAMA
+    // SUJI
+    // LUCKY
+
+
+    let newFamily = family.map(function(member) {
+    return member.toUpperCase() + 'love you';
+    })
+    console.log(newFamily);
+    // [ 'PAPAlove you',
+    //   'MAMAlove you',
+    //   'SUJIlove you',
+    //   'LUCKYlove you' ]
 -->
