@@ -303,3 +303,26 @@
     console.log(nameLength);
     // [ 'Lucky' ]
 -->
+
+
+<!-- # Array.reduce(function() {}) => good to find a max/min value in array!
+
+    let nums = [3,7,5,9];
+
+
+    let sum = nums.reduce(function(accumulator, el) {
+    return accumulator + el; // accumulator += el
+    }, 100); // the initial default accumulator = 100
+    console.log(sum); 
+    // 24(without 100) // 124 
+
+
+    let max = nums.reduce(function(accumulator, el) {
+    if (el > accumulator) {
+        return el;
+    } else {
+        return accumulator;
+    }
+    });
+    console.log(max); // 9
+-->
