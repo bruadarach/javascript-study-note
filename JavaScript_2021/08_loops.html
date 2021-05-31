@@ -92,8 +92,8 @@
 -->
 
 
-<!--
-    # Array.forEach(function() {})
+<!-- ARRAY LOOPS -->
+<!-- # Array.forEach(function() {})
 
     let family = ['Papa', 'Mama', 'Suji', 'Lucky'];
 
@@ -153,8 +153,7 @@
 -->
 
 
-<!--
-    # Array.map(function() {})
+<!-- # Array.map(function() {})
 
     let family = ['Papa','Mama','Suji','Lucky'];
 
@@ -175,4 +174,29 @@
     //   'MAMAlove you',
     //   'SUJIlove you',
     //   'LUCKYlove you' ]
+-->
+
+
+<!-- # Array.filter(function () {})
+
+    let family = ['Papa','Mama','Suji','Lucky'];
+
+    let nameS = family.filter(function(member) { // function(member, i, array)
+        return member[0] === 'S';
+    });
+    console.log(nameS);
+    // [ 'Suji' ]
+
+
+    let nameO = family.filter(function(member) { // function(member, i, array)
+        return member.includes('a') ;
+    });
+    console.log(nameO);
+    // [ 'Papa', 'Mama' ]
+
+    let nameLength = family.filter(function(member) { // function(member, i, array)
+        return member.length > 4 ;
+    });
+    console.log(nameLength);
+    // [ 'Lucky' ]
 -->
