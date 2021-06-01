@@ -1,0 +1,86 @@
+<!-- 
+    // BASIC ASSIGNMETN 
+    let family = {};
+    console.log(family) // {}
+
+    family['pet'] = 'Lucky';
+    family['age'] = 6;
+    family['breed'] = 'Poodle';
+
+    console.log(family); // { pet: 'Lucky', age: 6, breed: 'Poodle' }
+
+
+    // If we try to access a key that is not inside an object we get undefined.
+    console.log(family['pet']); // 'Lucky'
+    console.log(family['food']) // undefined 
+    console.log(family['food'] === undefined); // true
+
+
+    // KEY CHECK: While this is a common pattern, in modern JS the preferred method to check if an object exists in a key is to use the in operator:
+    console.log('pet' in family); // true
+    console.log('Lucky' in family); // false
+
+
+    // Using variables as keys
+    let newVariable = "pet";
+    console.log(newVariable); // pet
+
+    console.log(family[newVariable]); // 'Lucky'
+    console.log(family['pet']) // 'Lucky'
+
+    newVariable = 'weight';
+    family[newVariable] = 8;
+    console.log(family);
+    { pet: 'Lucky', age: 6, breed: 'Poodle', weight: 8 }
+
+
+    // Dot notation: value access and creation! 
+    let dog = {};
+    dog.bark = 'Bowow';
+    console.log(dog.bark); // Bowow
+    console.log(dog); { bark: 'Bowow' }
+
+
+    // Bracket notation & Dot notation
+    let myDog = {};
+    myDog.name = "Lucky";
+
+    // let's use a variable as our key and some bracket notation:
+    let myKey = "name";
+    console.log(myDog); // prints `{name: "Lucky"}`
+    console.log(myDog[myKey]); // prints `Lucky`
+
+    // what if we try to use the variable in dot notation:
+    // the below is interpreted as myDog['myKey']
+    console.log(myDog.myKey); // prints: undefined
+    myDog.myKey = '???';
+    console.log(myDog); // { name: 'Lucky', myKey: '???' }
+    console.log(myDog.myKey); // '???'
+
+
+    let myDog = {
+    name: "Fido",
+    type: "Doge",
+    age: 2,
+    favoriteToys: ["bone", "ball"]
+    };
+
+    console.log(myDog.age); // prints 2
+    console.log(myDog["favoriteToys"]); // prints ["bone", "ball"]
+
+
+    // Iterating through Objects
+    // The current key is assigned to *variable* on each iteration.
+    
+    for (let variable in object) {
+        statement;
+    }
+
+
+    let obj = {name: 'Lucky', age: 6};
+    for (let currentKeys in obj) {
+        console.log(currentKeys);
+    }
+    // name
+    // age
+    -->
