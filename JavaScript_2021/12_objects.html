@@ -1,5 +1,5 @@
 <!-- 
-    // BASIC ASSIGNMETN 
+    ### Basic Assignment ###
     let family = {};
     console.log(family) // {}
 
@@ -10,18 +10,18 @@
     console.log(family); // { pet: 'Lucky', age: 6, breed: 'Poodle' }
 
 
-    // If we try to access a key that is not inside an object we get undefined.
+    ### Undefined Key ###
     console.log(family['pet']); // 'Lucky'
     console.log(family['food']) // undefined 
     console.log(family['food'] === undefined); // true
 
 
-    // KEY CHECK: While this is a common pattern, in modern JS the preferred method to check if an object exists in a key is to use the in operator:
+    ### KEY CHECK ###
     console.log('pet' in family); // true
     console.log('Lucky' in family); // false
 
 
-    // Using variables as keys
+    ### Using variables as keys ### 
     let newVariable = "pet";
     console.log(newVariable); // pet
 
@@ -34,14 +34,14 @@
     { pet: 'Lucky', age: 6, breed: 'Poodle', weight: 8 }
 
 
-    // Dot notation: value access and creation! 
+    ### Dot notation: value access and creation! ###
     let dog = {};
     dog.bark = 'Bowow';
     console.log(dog.bark); // Bowow
     console.log(dog); { bark: 'Bowow' }
 
 
-    // Bracket notation & Dot notation
+    ### Bracket notation & Dot notation ###
     let myDog = {};
     myDog.name = "Lucky";
 
@@ -69,9 +69,8 @@
     console.log(myDog["favoriteToys"]); // prints ["bone", "ball"]
 
 
-    // Iterating through Objects
-    // The current key is assigned to *variable* on each iteration.
-    
+    ### Iterating : KEY ###
+
     for (let variable in object) {
         statement;
     }
@@ -83,4 +82,74 @@
     }
     // name
     // age
-    -->
+
+
+    ### Iterating : VALUE ###
+    let obj = {name: 'Lucky', age: 6};
+    for (let key in obj) {
+        let value = obj[key];
+        console.log(value);
+    }
+    // Lucky
+    // 6
+  
+
+    ### Function & Method (1) ###
+    let dog = {name: "Lucky"};
+
+    dog.bark = function() {
+    console.log("bark bark!");
+    }
+    console.log(dog); // { name: 'Lucky', bark: [Function] }
+
+    dog['speak'] = function(string) {
+    console.log('woof ' + string + ' woof!');
+    }
+    console.log(dog); // { name: 'Lucky', bark: [Function], speak: [Function] }
+
+    dog.bark(); // bark bark!
+    dog.speak('HI'); // woof HI woof!
+
+
+
+    ### Function & Method (2) ###
+    let dog = {name: "Lucky",
+
+    bark: function() {
+        console.log("bark bark!");
+        },
+        
+    speak: function(string) {
+        console.log('woof ' + string + ' woof!');
+        },
+    }
+    
+    dog.bark(); // bark bark!
+    dog.speak('HI'); // woof HI woof!
+
+
+
+    ### Object.keys(NAME), Object.values(NAME), Object.entries(NAME) ###
+    let dog = {name: 'Lucky', age: 6, breed: 'Poodle'};
+
+    console.log(Object.keys(dog));
+    // [ 'name', 'age', 'breed' ]
+
+    console.log(Object.values(dog));
+    // ['Lucky', 6, 'Poodle'] 
+
+    console.log(Object.entries(dog));
+    //[ [ 'name', 'Lucky' ], [ 'age', 6 ], [ 'breed', 'Poodle' ] ]
+
+
+    ### Primitives vs. Objects ### => Check my blog
+    1. 5 Primitive Types
+        - boolean
+        - Null
+        - Undefined
+        - Number 
+        - String 
+
+    2. 1 Reference Type 
+        - Object (including Array) 
+-->
