@@ -24,6 +24,163 @@
 
         console.log(obj['dog'])
 
+    6. Object is one "Reference Type"!  <-> primitives(=immutable)
+        - an array is also a type of object! 
+        - Mutable! 
+        
+    7. Array Destructuring
+        - Decstructuring elements in Order 
+        
+        let array = ['blue','red','pink','red','white'];
+
+        let [firstColor, secondColor] = array;
+
+        console.log(firstColor); // 'blue'
+        console.log(secondColor); // 'red'
+
+    8. Object Destructuring
+
+        let obj = {name: "Lucky", favorite: ['apple','gum']};
+
+        let {name, favorite: food} = obj;
+
+        console.log(name); // 'Lucky'
+        console.log(food) // ['apple','gum']
+
+
+    9. Nested Destructuring
+
+        let familyDog = {
+            name: 'Lucky',
+            breed: 'Poodle',
+            age: 6,
+            favorite: {
+                food: 'Apple',
+                person: 'Father'
+            }
+        };
+
+        let {favorite: {food}} = familyDog;
+        console.log(food); // 'Apple'
+
+    10. Destructuring Objects:
+        - 1. Destructuring Objects in Parameters
+
+        ///// Normal Way /////
+        let pet = {name: 'Lucky', age: 6, favorite: 'Apple'};
+
+        function sayHelloName(name) {
+            let petName = pet.name;
+            console.log("Hello to " + petName);
+        }
+        sayHelloName(pet); // Hello to Lucky
+
+
+        ///// Parameter Destructuring /////
+        let pet = {name: 'Lucky', age: 6, favorite: 'Apple'};
+
+        function sayHelloName({name}) {
+            console.log("Hello to " + name);
+        }
+        sayHelloName(pet); // Hello to Lucky
+
+    11. Rest and Spread:
+        - 1. Rest Parameters - grab the rest of the parameters.
+        - 2. Spread Operator:
+            a. spread elements into data structures
+            b. spread iterable data types within function arguments
+
+
+        function colorPicker(color) {
+            let string = "I picked the following colors: " + color;
+            return string;
+        }
+        console.log(colorPicker("red")); // I picked the following color: red
+        console.log(colorPicker("red", "blue")); // ignore 2nd parameter // I picked the following color: red
+
+
+        ///// Add 2nd parameter /////
+        function colorPicker(color, secondColor) {
+            let string = "I picked the following colors: " + color + ", " + secondColor;
+            return string;
+        }
+        console.log(colorPicker("red")); // I picked the following colors: red, undefined
+        console.log(colorPicker("red", "blue")); // I picked the following colors: red, blue
+
+
+        ///// ...otherEelemtns /////
+        function colorPicker(color, ...otherColors) {
+            let string = "I picked the following colors: " + color;
+            console.log(otherColors) // ['blue', 'yellow']
+            return string;
+        }
+        console.log(colorPicker("red")); // I picked the following colors: 
+        console.log(colorPicker("red", "blue", 'yellow')); // I picked the following colors: blue,yellow
+
+
+        ///// ...otherElements + loop /////
+        function colorPicker(color, ...otherColors) {
+            let string = "I picked the following colors: " + color;
+            return string;
+        }
+        console.log(colorPicker("red", "blue", 'yellow')); // I picked the following color: red
+
+
+        function colorPicker(color, ...otherColors) {
+            let string = "I picked the following colors: " + color;
+            
+            otherColors.forEach(function(args) {
+            string = string + ", " + args;
+            });
+            return string;
+        }
+        console.log(colorPicker("red", "blue", 'yellow')); // I picked the following colors: red, blue, yellow
+
+
+        ///// Spread - Array! /////
+        let array1 = [1,2,3];
+        let array2 = [4,5,6];
+
+        // Using concat()
+        let array3 = array1.concat(array2);
+        console.log(array3); // [ 1, 2, 3, 4, 5, 6 ]
+
+        // Using spread! 
+        let array3 = [...array1, ...array2];
+        console.log(array3); // [ 1, 2, 3, 4, 5, 6 ]
+
+
+        ///// Spread - Object! /////
+        let obj1 = {father: "Young", mother: "Sun"};
+        let obj2 = {me: "Suji", pet: "Lucky"};
+
+        let obj3 = {...obj1,...2};
+        console.log(obj3); // { father: 'Young', mother: 'Sun', me: 'Suji', pet: 'Lucky' }
+
+
+        ///// Spread - iterable data types within function argument /////
+        function colorPicker(colorOne, colorTwo) {
+            return "I picked out " +colorOne + " and " + colorTwo;
+        };
+        console.log(colorPicker("red","blue")); // I picked out red and blue
+
+
+        function colorPicker(colorOne, colorTwo) {
+            return "I picked out " +colorOne + " and " + colorTwo;
+        };
+        let colorArray = ["indigo", "white"];
+        console.log(colorPicker(colorArray)); // I picked out indigo,white and undefined
+
+
+        function colorPicker(colorOne, colorTwo) {
+            return "I picked out " +colorOne + " and " + colorTwo;
+        };
+        let colorArray = ["indigo", "white"];
+        console.log(colorPicker(...colorArray)); // I picked out indigo and white
+
+
+
+
 
     ### Basic Assignment ###
     let family = {};
