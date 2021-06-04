@@ -336,3 +336,33 @@
     2. 1 Reference Type 
         - Object (including Array) 
 -->
+
+
+
+<!-- Iterate Through Obj
+    
+    Write a function printObject(obj) that prints out all key-value pairs of an object. The format should be key - value. 
+
+    HINT: use a for loop
+-->
+function printObject(obj) {
+  // obj = Object.entries(obj)
+  // for (let i = 0; i < obj.length; i++) {
+  //   console.log(obj[i][0]+ ' - ' + obj[i][1]);
+  // } 
+  for (let key in obj) {
+  	let value = obj[key];
+    console.log(key + ' - ' + value);
+  }
+}
+
+let bootcamp = {
+  name: "App Academy",
+  color: "Red",
+  population: 120
+};
+
+printObject(bootcamp); // prints
+// name - App Academy
+// color - Red
+// population - 120
