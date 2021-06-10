@@ -346,6 +346,120 @@
         console.log(str.padEnd(4,'-')); // result is 5---
 
 
+        // .charAt(idx)
+        // returns the character at a specified index (position) in a string
+        // if it doesn't have, return nothing
+        // C.f) string[idx] return undefined, if it doesn't have
+        let str = 'Hello World';
+        console.log(str.charAt(0)); // H
+        console.log(str.charAt(-1)); // 
+        console.log(str.charAt(100)); // 
+
+
+        // .charCodeAt(idx)
+        // returns the unicode(UTF-16 code (an integer between 0 and 65535)) of the character at a specified index in a string
+        // if it doesn't have, return NaN
+        console.log(str.charCodeAt(0)); // 72
+        console.log(str.charCodeAt(-1)); // NaN
+        console.log(str.charCodeAt(100)); // NaN
+
+
+        // property access []
+        // if it doesn't have, return undefined
+        let str = 'Hello World';
+        console.log(str[0]); // H
+        console.log(str[-1]); // undefined
+        console.log(str[100]); // undefined
+
+
+        // .split('seperator')
+        // String to Array
+        let str = 'love';
+        console.log(str.split()); // [ 'love' ] // the whole thing
+        console.log(str.split("")); // [ 'l', 'o', 'v', 'e' ] // single characters
+        console.log(str.split(',')); // [ 'love' ] // nothing applicable
+
+        let txt = "a,b,c";  
+        console.log(txt.split(",")); // [ 'a', 'b', 'c' ]
+        console.log(txt.split("")); // [ 'a', ',', 'b', ',', 'c' ]    
+        console.log(txt.split("|")); // [ 'a,b,c' ] // nothing applicable
+
+
+        // .includes('search value', 'start index inclusive')
+        // case-sensitive
+        let str = "Hello World";
+        console.log(str.includes('World')); // true
+        console.log(str.includes('WORLD')); // false
+        console.log(str.includes('World',6)); // true
+        console.log(str.includes('World', 7)); // false
+
+
+        // .statsWith('searchvalue', 'start index inclusive')
+        // .endsWith('searchvalue', length of string to search)
+        // case-sensitve
+        let str = "Hello World";
+        console.log(str.startsWith("World")); // false
+        console.log(str.startsWith("World", 6)); // true
+
+        console.log(str.endsWith("World")); // true
+        console.log(str.endsWith("Hello",5)); // 
+
+
+        // .repeat(number)
+        console.log('a'*3); // NaN
+        console.log('a'.repeat(3)); //'aaa'
+
+
+        // String() - regardless of initialization(object), it is possible to convert from Number to String
+        // .toString() - Only after the initialization(object) of the number, it is possible to convert
+        let a = 1;
+        console.log(String(1));
+        let b = String(a); 
+        console.log(b); // '1' // typeof string
+
+        let c = a.toString();
+        console.log(c); // '1' // typeof string
+
+        let x = new String('Hello world');
+        console.log(x); // [String: 'Hello world']
+        console.log(x.valueOf()); // Hello world
+        console.log(x.toString()); // Hello world
+
+
+        // Str1.localeCompare(str2)
+        // compare any two elements lexicographically
+        // return 1 if if the reference string is lexicographically greater than the compare string
+        // return 0 if if the compare and reference strings are equivalent.
+        // return -1 if the reference string is lexicographically smaller than the compare string
+        let str1 = "a";
+        let str2 = "b";
+        let str3 = "c";
+        let str4 = "c";
+        console.log(str1.localeCompare(str2)); // -1
+        console.log(str3.localeCompare(str4)); // 0
+        console.log(str3.localeCompare(str1)); // 1
+
+
+        // .match('searchvalue' or regular expression)
+        // using globa (g) and ignore upper/lower case (i)
+        let str = "It is rainy rainy";
+        console.log(str.match('rain')); // [ 'rain', index: 6, input: 'It is rainy' ]
+        console.log(str.match(/rain/g)); // [ 'rain', 'rain' ]
+        console.log(str.match('wow')) // null
+        // match() w/ (g) and (i)
+        let str2 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        let regexp = /[A-E]/gi;
+        let matches_array = str2.match(regexp);
+        console.log(matches_array); // [ 'A', 'B', 'C', 'D', 'E', 'a', 'b', 'c', 'd', 'e' ]
+
+
+
+
+
+
+
+
+
 
 
         
