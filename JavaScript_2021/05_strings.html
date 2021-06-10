@@ -108,11 +108,8 @@
     let greeting = 'Hi! Suji';
     console.log(greeting.replace('Suji', 'Minji')) // Hi! Minji
 
-
     # Reverse String?!
     String.split("").reverse().join("");
-
-
 -->
 
 <html>
@@ -228,6 +225,32 @@
         if (stringChanger("foo", "unknown") === "foo") score++;
 
         console.log("You have scored " + score + "/5 points.");
+
+
+        /* EXTRA REVIEW */
+
+        // 1. FIND A STRING // 
+        // word & sentence 
+        // only return the index of first occurance
+        // if it doesn't have, return -1 
+        // case-sensitive
+        let word = 'lovely'
+        console.log(word.indexOf('l')) // 0
+        console.log(word.indexOf('L')) // -1 case-sensitive
+        console.log(word.indexOf('l',3)) // 4 // set the searching starting index
+        console.log(word.lastIndexOf('l')) // 4
+        
+        let str = 'I love your love';
+        console.log(str.indexOf('love')); // 2
+        console.log(str.indexOf('LOVE')); // -1 case-sensitive
+        console.log(str.lastIndexOf('love')); // 12
+        console.log(str.lastIndexOf('love',11)); // 2
+
+
+
+
+
+
 
         </script>
     </body>
