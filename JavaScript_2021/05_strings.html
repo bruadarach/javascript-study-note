@@ -31,17 +31,22 @@
     # (NO inplace) str.slice(beginIndex, endIndex) //=> (inclusive, exclusive)
     let a = 'Lovely Lucky';
     console.log(a.slice(0)) // Lovely Lucky
-    console.log(a.slice(0,1)) // L
     console.log(a.slice(1)) // ovely Lucky
     console.log(a.slice(-1)) // y
     console.log(a.slice(-5)) // Lucky
+    console.log(a.slice(0,6)) // Lovely
+    console.log(a.slice(-1,-5)) // 
+    console.log(a.slice(-5,-1)) // Luck
+
 
     let b = ['love', 'family', 'dream']
     console.log(b.slice(0)) // [ 'love', 'family', 'dream' ]
-    console.log(b.slice(0,1)) // [ 'love' ]
     console.log(b.slice(1)) // [ 'family', 'dream' ]
     console.log(b.slice(-1)) // [ 'dream' ]
     console.log(b.slice(-3)) // [ 'love', 'family', 'dream' ]
+    console.log(b.slice(1,2)) // [ 'family' ]
+    console.log(b.slice(-1,-2)) // []
+    console.log(b.slice(-3,-1)) // ['love', 'family']
 
     # Mutability - IMMUTABLE! (comparing String vs Array, Object)
     let myArr = ["b", "e", "a", "m"];
@@ -240,11 +245,11 @@
         console.log(word.indexOf('l',3)) // 4 // set the searching starting index
         console.log(word.lastIndexOf('l')) // 4
         
-        let str = 'I love your love';
-        console.log(str.indexOf('love')); // 2
-        console.log(str.indexOf('LOVE')); // -1 case-sensitive
-        console.log(str.lastIndexOf('love')); // 12
-        console.log(str.lastIndexOf('love',11)); // 2
+        let sentence = 'I love your love';
+        console.log(sentence.indexOf('love')); // 2
+        console.log(sentence.indexOf('LOVE')); // -1 case-sensitive
+        console.log(sentence.lastIndexOf('love')); // 12
+        console.log(sentence.lastIndexOf('love',11)); // 2
 
 
 
