@@ -168,7 +168,7 @@
         console.log(fullName) // Lucky Blue
         
         /* not possible : string + number concatenation */
-        console.log(1+'hi')
+        console.log(1+'hi') // '1hi' // typeof string
         let result = 1+'hi' // in this case, Python occuers TypeError: unsupported operand type(s) for +: 'int' and 'str'
         console.log(typeof result) // string
 
@@ -232,24 +232,123 @@
         console.log("You have scored " + score + "/5 points.");
 
 
-        /* EXTRA REVIEW */
 
-        // 1. FIND A STRING // 
+        /* EXTRA REVIEW */
+        
+        // .indexOf('string', starting index), .lastIndexOf('', starting index)) // 
         // word & sentence 
         // only return the index of first occurance
         // if it doesn't have, return -1 
         // case-sensitive
-        let word = 'lovely'
-        console.log(word.indexOf('l')) // 0
-        console.log(word.indexOf('L')) // -1 case-sensitive
-        console.log(word.indexOf('l',3)) // 4 // set the searching starting index
-        console.log(word.lastIndexOf('l')) // 4
+        let word = 'lovely';
+        console.log(word.indexOf('l')); // 0
+        console.log(word.indexOf('L')); // -1 case-sensitive
+        console.log(word.indexOf('l',3)); // 4 // set the searching starting index
+        console.log(word.lastIndexOf('l')); // 4
         
         let sentence = 'I love your love';
         console.log(sentence.indexOf('love')); // 2
         console.log(sentence.indexOf('LOVE')); // -1 case-sensitive
         console.log(sentence.lastIndexOf('love')); // 12
         console.log(sentence.lastIndexOf('love',11)); // 2
+
+
+        // .search('string' or 'regular expression')
+        // word & sentence 
+        // only return the index of first occurance
+        // if it doesn't have, return -1 
+        // case-sensitive
+        // start point is not be able to set
+        // string and 'regular expression' are possible to search
+        let word = 'lovely';
+        console.log(word.search('l')); // 0 
+        console.log(word.search('L')); // -1 
+        console.log(word.search('l',2)); // 0
+
+        let str = 'I love your love';
+        console.log(str.search('love')); // 2
+        console.log(str.search('LOVE')); // -1 case-sensitive
+        console.log(str.search('love',1)); // 2
+
+        let stc = 'dog.';
+        console.log(stc.search( /[^\w\s]/g)); // 3 
+
+
+        // .slice(start index inclusive, end index exclusive)
+        // last index will be -1
+        // be careful when you use negative indexes, as lastIndexOf searches from the end to beginnig
+        // (NO inplace) str.slice(beginIndex, endIndex) //=> (inclusive, exclusive)
+        let a = 'Lovely Lucky';
+        console.log(a.slice(0)); // Lovely Lucky
+        console.log(a.slice(1)); // ovely Lucky
+        console.log(a.slice(-1)); // y
+        console.log(a.slice(-5)); // Lucky
+        console.log(a.slice(0,6)); // Lovely
+        console.log(a.slice(-1,-5)); // 
+        console.log(a.slice(-5,-1)); // Luck
+
+        let b = ['love', 'family', 'dream'];
+        console.log(b.slice(0)); // [ 'love', 'family', 'dream' ]
+        console.log(b.slice(1)); // [ 'family', 'dream' ]
+        console.log(b.slice(-1)); // [ 'dream' ]
+        console.log(b.slice(-3)); // [ 'love', 'family', 'dream' ]
+        console.log(b.slice(1,2)); // [ 'family' ]
+        console.log(b.slice(-1,-2)); // []
+        console.log(b.slice(-3,-1)); // ['love', 'family']
+
+
+        // .substring(start index inclusive, end index exclusive)
+        // negative index is not accepted
+        let a = 'Lovely Lucky';
+        console.log(a.substring(0)); // Lovely Lucky
+        console.log(a.substring(1)); // ovely Lucky
+        console.log(a.substring(0,6)); // Lovely
+
+        console.log(a.substring(-1)); // Lovely Lucky
+        console.log(a.substring(-5)); // Lovely Lucky
+        console.log(a.substring(-1,-5)); // 
+        console.log(a.substring(-5,-1)); //
+
+
+        //.search(start index inclusive, length)
+        // similar to .slice(), but not be applicable to Array
+        let str = 'Apple Banana';
+        str.substr(7,6); // Banana
+        str.substr(0); // Apple Banana
+        str.substr(1); // pple, Banana
+        str.substr(-1); // a.includes
+        str.substr(-6,-3) // Ban
+
+
+        // .toUpperCase(), toLowerCase() 
+        // NO INPLACE
+        'Suji'.toUpperCase(); // SUJI
+        'Suji'.toLowerCase(); // suji
+
+
+        // string1.concat("connector", string2)
+        // NO INPLACE
+        let text1 = 'Suji';
+        let text2 = 'Lucky';
+
+        console.log(text1.concat(text2)); // SujiLucky
+        console.log(text1.concat(" ", text2)); // Suji Lucky
+
+        console.log(text1 + text2); // SujiLucky
+        console.log(text1+" "+text2); // Suji Lucky
+
+
+        // .padStart(the whole length, 'what you want to fill')
+        // .padEnd( , )
+        // String Padding is not supported in Internet Explorer
+        let str = "5";
+        console.log(str.padStart(4,0)); // 0005
+        console.log(str.padEnd(4,'-')); // result is 5---
+
+
+
+
+        
 
 
 
