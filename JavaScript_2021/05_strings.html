@@ -453,6 +453,26 @@
         console.log(matches_array); // [ 'A', 'B', 'C', 'D', 'E', 'a', 'b', 'c', 'd', 'e' ]
 
 
+        // str1.replace(str1 or '1-time connector' or regex, str3, strN ...)
+        // default is to replace the first occurance only.
+        // use regular expession, especially w/ i and g
+        let p = 'like like Like Like LIKE LIKE';
+        console.log(p.replace('like', 'LOVE')); // case-sensitive // only first one replace // "LOVE like Like Like LIKE LIKE"
+
+        let regex1 = /like/i; // no case-sensitive // only first one replace
+        console.log(p.replace(regex1, 'LOVE')); // not working well.... why? // "LOVE like Like Like LIKE LIKE"
+
+        let regex2 = /like/g;
+        console.log(p.replace(regex2, 'LOVE')); // case-sensitive // many global // "LOVE LOVE Like Like LIKE LIKE"
+
+        let regex3 = /like/ig;
+        console.log(p.replace(regex3, 'LOVE')); // no case-sensitive // many global // "LOVE LOVE LOVE LOVE LOVE LOVE"
+
+        let w = 'aaAA'
+        let regex4 = /a/i;
+        console.log(w.replace(regex4, 'S'));
+
+
 
 
 
