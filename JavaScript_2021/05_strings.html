@@ -457,9 +457,9 @@
         // default is to replace the first occurance only.
         // use regular expession, especially w/ i and g
         let p = 'like like Like Like LIKE LIKE';
-        console.log(p.replace('like', 'LOVE')); // case-sensitive // only first one replace // "LOVE like Like Like LIKE LIKE"
+        console.log(p.replace('like', 'LOVE')); // case-sensitive // only first one replaced // "LOVE like Like Like LIKE LIKE"
 
-        let regex1 = /like/i; // no case-sensitive // only first one replace
+        let regex1 = /like/i; // no case-sensitive // only first one replaced
         console.log(p.replace(regex1, 'LOVE')); // not working well.... why? // "LOVE like Like Like LIKE LIKE"
 
         let regex2 = /like/g;
@@ -470,9 +470,46 @@
 
         let w = 'aaAA'
         let regex4 = /a/i;
-        console.log(w.replace(regex4, 'S'));
+        console.log(w.replace(regex4, 'S')); // "SaAA" // no case-sensiive, BUT only first occurance replaced
 
 
+        // String.raw`${variable}`
+        // Template literals (Template strings)
+        let name = 'Bob';
+        console.log(String.raw`Hi\n${name}!`); // Hi\nBob!
+        console.log(String.raw`Hi ${name}!`); // Hi Bob!
+        console.log(String.raw`Hi '${name}'!`); // Hi 'Bob'!
+
+        console.log(String.raw({ raw: 'test' }, 0, 1, 2)); // 't0e1s2t'
+
+
+        // Template literals (Template strings)
+        // ES6 version - ${age}
+        let name = 'Lucky';
+        let age = 6;
+        let favorite = 'apple';
+
+        console.log(
+        `Hi, my name is "${name}".
+        I am ${age} years old.
+        I like ${favorite}.`
+        )
+        // Hi, my name is "Lucky".
+        // I am 6 years old.
+        // I like apple.
+
+
+
+        // ES5 version - + name + 
+        let name = 'Lucky'
+        let age = 6;
+        let favorite = 'apple';
+
+        console.log(
+        "Hi, my name is " + name + ". " +
+        "I am " + age + " years old. " +
+        "I like " +favorite + ".")
+        // Hi, my name is Lucky. I am 6 years old. I like apple.
 
 
 
