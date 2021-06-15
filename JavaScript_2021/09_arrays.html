@@ -326,3 +326,132 @@
     });
     console.log(max); // 9
 -->
+
+///// 1) Arrays are Arrays /////
+
+///// CREATION /////
+// Creation 1 - simply use it
+let arr = [1,true,'a',[2,3,4]];
+// Creation 2 - not recommended, don't use
+let arr2 = new Array(1,true,'a',[2,3,4]);
+
+
+///// Access the element /////
+let family = ['Suji', 'Minji', 'Lucky'];
+console.log(family[0]); // Suji
+console.log(family[-1]); // undefined
+console.log(family[5]); // undefined
+
+
+///// Changing an element - MUTALBLE ///// 
+family[0] = 'Kwang';
+console.log(family); // [ 'Kwang', 'Minji', 'Lucky' ]
+
+console.log(typeof family) // object
+
+
+///// 2) Arrays are Objects /////
+let dog = {name: "Lucky", age: 6, favorite: 'Apple'};
+console.log(typeof dog); // object
+
+// Access a value
+console.log(dog.name); // Lucky
+
+
+///// 3) Built-in Array-Array Properties and Methods
+
+// Properties
+console.log(family.length); // 3
+console.log(dog.length); // undefined
+console.log(family.length-1); // 2 // accessing the last array element
+
+
+///// 4) Looping Array Elemetns /////
+for (let i = 0; i < family.length; i++) {
+  console.log(family[i])
+};
+// Kwang
+// Minji
+// Lucky  
+
+
+family.forEach(function(member,i,array) {
+  console.log(member,i,array);
+});
+// Kwang 0 [ 'Kwang', 'Minji', 'Lucky' ]
+// Minji 1 [ 'Kwang', 'Minji', 'Lucky' ]
+// Lucky 2 [ 'Kwang', 'Minji', 'Lucky' ]
+
+
+// Adding elements
+let arrnum = [1,2,3];
+arrnum.push(4);
+console.log(arrnum); // [ 1, 2, 3, 4 ]
+
+arrnum[arrnum.length] = 5;
+console.log(arrnum); // [ 1, 2, 3, 4, 5 ]
+
+arrnum[10] = 10; // WARNING! can create undefined "holes" in an aray
+console.log(arrnum) // [ 1, 2, 3, 4, 5, , , , , , 10 ]
+
+
+// NO Associative Arrays! NOT using named index (= hashes)
+// only numbered indexes are available for JS 
+let one = 1;
+console.log(arrnum[one])
+
+
+var person = [];
+person["firstName"] = "John";
+person["lastName"] = "Doe";
+person["age"] = 46;
+console.log(person) // [ firstName: 'John', lastName: 'Doe', age: 46 ]
+var x = person.length;     // person.length will return 0
+console.log(x)
+var y = person[0];         // person[0] will return undefined
+console.log(y) // undefined
+console.log(person["firstName"]) // John // ...?! 
+
+/*
+The Difference Between Arrays and Objects
+
+- In JavaScript, arrays use numbered indexes.  arr[0]
+- In JavaScript, objects use named indexes. arr.firstName
+
+Therefore, Arrays are a special kind of objects, with numbered indexes.
+*/
+
+/*
+When to Use Arrays? When to use Objects?
+
+- JavaScript does not support associative arrays.
+- You should use objects when you want the element names to be strings (text).
+- You should use arrays when you want the element names to be numbers.
+*/
+
+
+///// How to Recognize an Array /////
+// How do I know if a variable is an array?
+// The problem is that the JavaScript operato r typeof returns "object":
+
+let  fruits = ["Banana", "Orange", "Apple", "Mango"];;
+console.log(typeof fruits);    // returns object
+
+// Solution 1. isArray()
+console.log(Array.isArray(fruits)); // true
+
+// Solution 2. instanceof
+console.log(fruits instanceof Array); // true
+
+// Solution 3. function 
+function isArray(x) {
+  return x.constructor.toString().indexOf("Array") > -1;
+}
+
+console.log(isArray(fruits)) // true
+
+
+
+
+
+
