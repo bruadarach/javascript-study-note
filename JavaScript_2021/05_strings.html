@@ -484,6 +484,20 @@
 
 
         // Template literals (Template strings)
+        // We use back-ticks(``)
+        console.log(`I counted ${3+4} ship`) // I counted 7 ship
+
+        // C.f('')
+        console.log('I counted ${3+4} ship') // I counted ${3+4} ship
+
+        // conparision
+        let qty = 5; 
+        let total = 10;
+        console.log("You bought " + qty + " products. The total is " + total + ".") // You bought 5 products. The total is 10.
+
+        console.log(`You bought ${qty} products. The total is ${total}.`) // You bought 5 product. The total is 10.
+
+
         // ES6 version - ${age}
         let name = 'Lucky';
         let age = 6;
