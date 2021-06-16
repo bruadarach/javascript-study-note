@@ -358,12 +358,33 @@ console.log(typeof dog); // object
 console.log(dog.name); // Lucky
 
 
-///// 3) Built-in Array-Array Properties and Methods
+///// 3) Built-in Array-Array Properties 
 
-// Properties
+// Properties 1 - .length
+let family = ['Suji', 'Minji', 'Lucky'];
 console.log(family.length); // 3
-console.log(dog.length); // undefined
 console.log(family.length-1); // 2 // accessing the last array element
+
+// Properties 2 - .constructor
+// Returns an array's constructor function:
+let fruits = ["Banana", "Orange", "Apple", "Mango"];
+console.log(fruits.constructor); // [Function: Array]
+
+// Properties 3 - .prototype
+// Make a new array method 
+Array.prototype.myUcase = function() {
+  for (let i = 0; i < this.length; i++) {
+    this[i] = this[i].toUpperCase();
+  }
+};
+
+let fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.myUcase();
+console.log(fruits) // [ 'BANANA', 'ORANGE', 'APPLE', 'MANGO' ]
+
+
+
+
 
 
 ///// 4) Looping Array Elemetns /////
