@@ -472,6 +472,25 @@ function isArray(x) {
 console.log(isArray(fruits)) // true
 
 
+///// Array Iteration /////
+// .forEach()
+let arr = [1, 2, 3, 4, 5];
+let newArr = arr.forEach(function(v, i, arr) {
+  console.log(v);
+  return v * 2;
+});
+console.log(newArr) // undefined
+
+
+// .map()
+let arr = [1, 2, 3, 4, 5];
+let newArr = arr.map(function(v, i, arr) {
+  console.log(v);
+  return v * 2;
+});
+console.log(newArr) // [ 2, 4, 6, 8, 10 ]
+
+
 
 
 
