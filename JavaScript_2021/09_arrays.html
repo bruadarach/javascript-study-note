@@ -598,6 +598,44 @@ console.log(family.includes('Kwang')) // false
 console.log(family.includes(NaN)) // true
 
 
+// .find(value, idx, array)
+// return only first element satisfying the provided testing function. 
+// If no values, undefined is returned.
+let array = [1,2,3,200,200];
+let result = array.find(element => element > 10);
+console.log(result); // 200
+
+let array = [1,2,3,200,200];
+let result = array.find(myFunction);
+function myFunction(value, index, array){
+  return value > 10;
+});
+console.log(result); // 200
+
+let array = [1,2,3,200,200];
+let result = array.find(function(value, index, array){
+  return value > 10;
+});
+console.log(result); // 200
+
+
+// .findIndex(value, idx, array)
+// return only first element satisfying the provided testing function. 
+// If no values, undefined is returned.
+// is not supported in older browsers
+let array = [1,2,3,200,200];
+let result = array.findIndex(function(value, index, array){
+  return value > 10;
+});
+console.log(result); // 3
+
+let array = [1,2,3,200,200];
+let result = array.find(function(value, index, array){
+  return value > 1000;
+});
+console.log(result); // undefined
+
+
 
 
 
