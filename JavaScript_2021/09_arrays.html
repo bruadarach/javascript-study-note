@@ -538,6 +538,41 @@ let sum = array.reduceRight(function(accumulator,el){
 console.log(sum) // 110
 
 
+// .every(value, idx, array)
+// The every() method tests whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value.
+1. function 
+let numbers = [11,12,13];
+let allOver10 = numbers.every(myFunction);
+
+function myFunction(value, index, array) {
+  return value > 10;
+}
+
+console.log(allOver10) // true
+
+2) arrow function
+let arr = [11,12,13];
+let allOver10 = (currentValue) => currenValue > 10
+console.log(arr.every(allOver10); // true
+
+
+// .some(value, idx, array)
+// The some() method check if some array values pass a test.
+let numbers = [1, 2, 100];
+let allOver10 = numbers.some(myFunction);
+
+function myFunction(value, index, array) {
+  return value > 10;
+}
+
+console.log(allOver10) // true
+
+
+
+
+
+
+
 
 
 
