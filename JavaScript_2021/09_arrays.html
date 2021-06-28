@@ -491,7 +491,7 @@ let newArr = arr.map(function(v, i, arr) {
 console.log(newArr) // [ 2, 4, 6, 8, 10 ]
 
 
-// .reduce(accumulator, currentValue, index, array)
+// .reduce(accumulator(initial value / previously returned value), currentValue, index, array)
 // 1. reduce - accumulator basic without default value
 let array1 = [1,2,3,4];
 
@@ -515,6 +515,29 @@ let array3 = [1,2,3,4];
 let reducer = (accumulator, currentValue) => accumulator + currentValue;
 console.log(array3.reduce(reducer)); //10
 console.log(array3.reduce(reducer,100)); // 110
+
+
+// .reduceRight(accumulator(initial value / previously returned value), currentValue, index, array)
+// 1. reduceRight() without default value
+let numbers = [1,2,3,4];
+let sum = numbers.reduceRight(myFunction);
+
+function myFunction(total, value) {
+  return total + value;
+}
+
+console.log(sum) // 10
+
+// 2. reduceRight() with default value 
+let array = [1,2,3,4];
+
+let sum = array.reduceRight(function(accumulator,el){
+  return accumulator + el;
+  }, 100);
+  
+console.log(sum) // 110
+
+
 
 
 
