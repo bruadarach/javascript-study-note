@@ -568,6 +568,39 @@ function myFunction(value, index, array) {
 console.log(allOver10) // true
 
 
+// .indexOf(value, startidx)
+// case-sensitive
+// NaN is not possible to check! 
+let family = ['Suji', 'Minji', 'Lucky', 'Suji', 'Lucky', NaN];
+console.log(family.indexOf('Suji')) // 0
+console.log(family.indexOf('Suji', 2)) // 3
+console.log(family.indexOf('Kwang')) // -1
+console.log(family.indexOf(NaN)) // -1
+
+
+// .lastIndexOf(value, startidx)
+// case-sensitive
+// NaN is not possible to check! 
+let family = ['Suji', 'Minji', 'Lucky', 'Suji', 'Lucky', NaN];
+console.log(family.lastIndexOf('Suji')) // 3
+console.log(family.lastIndexOf('Suji', 2)) // 0
+console.log(family.lastIndexOf('Kwang')) // -1
+console.log(family.indexOf(NaN)) // -1
+
+
+// .includes(value, startidx)
+// case-sensitive
+// allows to check for NaN values. Unlike Array.indexOf().
+let family = ['Suji', 'Minji', 'Lucky', 'Suji', 'Lucky', NaN];
+console.log(family.includes('Suji')) // true
+console.log(family.includes('Suji', 2)) // true
+console.log(family.includes('Kwang')) // false
+console.log(family.includes(NaN)) // true
+
+
+
+
+
 
 
 
