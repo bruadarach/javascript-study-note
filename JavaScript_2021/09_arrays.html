@@ -653,7 +653,54 @@ cars[0] = "Toyota"; // [ 'Toyota', 'Volvo', 'BMW' ]
 cars.push("Audi"); // [ 'Toyota', 'Volvo', 'BMW', 'Audi' ]
 
 
+// Array Block Scope with Const (and let)
+// An array declared with const has Block Scope.
+// An array declared in a block is not the same as an array declared outside the block:
 
+const cars = ["Saab", "Volvo", "BMW"];
+// Here cars[0] is "Saab"
+{
+  const cars = ["Toyota", "Volvo", "BMW"];
+  console.log(cars[0])
+  // Here cars[0] is "Toyota"
+}
+// Here cars[0] is "Saab"
+
+
+// C.f) Array Block Scope with var
+// Variables declared with the var keyword can NOT have block scope.
+
+var cars = ["Saab", "Volvo", "BMW"];
+// Here cars[0] is "Saab"
+{
+  var cars = ["Toyota", "Volvo", "BMW"];
+  // Here cars[0] is "Toyota"
+}
+// Here cars[0] is "Toyota" // HERE IS DIFFERENT! 
+
+
+// Redeclaring Arrays with const 
+// Redeclaring or reassigning an array to const, in the same scope, or in the same block, is not allowed:
+// Redeclaring an array with const, in another scope, or in another block, is allowed:
+
+const cars = ["Volvo", "BMW"];       // Allowed
+//const cars = ["Volvo", "BMW"];       // Not allowed
+//var cars = ["Volvo", "BMW"];         // Not allowed
+//cars = ["Volvo", "BMW"];             // Not allowed
+
+{
+  const cars = ["Volvo", "BMW"];     // Allowed
+  //const cars = ["Volvo", "BMW"];     // Not allowed
+  //var cars = ["Volvo", "BMW"];       // Not allowed
+  //cars = ["Volvo", "BMW"];           // Not allowed
+}
+
+
+// Redeclaring an array declared with var is allowed anywhere in a program:
+var cars = ["Volvo", "BMW"];   // Allowed
+var cars = ["Toyota", "BMW"];  // Allowed
+cars = ["Volvo", "Saab"];      // Allowed
+console.log(cars) // [ 'Volvo', 'Saab' ]
 
 
 
