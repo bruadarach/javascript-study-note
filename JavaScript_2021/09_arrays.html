@@ -636,6 +636,30 @@ let result = array.find(function(value, index, array){
 console.log(result); // undefined
 
 
+// Array and Const 
+// JavaScript const variables must be assigned a value when they are declared:
+const cars;
+cars = ["Saab", "Volvo", "BMW"]; // SyntaxError: Missing initializer in const declaration
+
+// Array Cannot be Reassigned, BUT Elements Can be Reassigned !
+const cars = ["Saab", "Volvo", "BMW"];
+cars = ["Toyota", "Volvo", "Audi"];    // ERROR
+
+// You can create a constant array:
+const cars = ["Saab", "Volvo", "BMW"];
+// You can change an element:
+cars[0] = "Toyota"; // [ 'Toyota', 'Volvo', 'BMW' ]
+// You can add an element:
+cars.push("Audi"); // [ 'Toyota', 'Volvo', 'BMW', 'Audi' ]
+
+
+
+
+
+
+
+
+
 
 
 
