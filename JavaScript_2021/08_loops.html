@@ -223,3 +223,141 @@
     });
     console.log(max); // 9
 -->
+
+<!--
+JavaScript supports different kinds of loops:
+
+for - loops through a block of code a number of times
+for/in - loops through the properties of an object
+for/of - loops through the values of an iterable object
+while - loops through a block of code while a specified condition is true
+do/while - also loops through a block of code while a specified condition is true
+-->
+
+
+<!--
+// for (statement 1, 2, 3) 
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}
+// 0
+// 1
+// 2
+// 3
+// 4
+
+
+// statement 1 and 3 are omitted
+let i = 0;
+let len = 5;
+for (; i < len; ) {
+  console.log(i)
+  i++;
+}
+// 0
+// 1
+// 2
+// 3
+// 4
+
+
+// using let, the variable declared in the loop does NOT redeclare the variable outside the loop.
+let i = 100;
+for (let i = 0; i < 5; i++) {
+  console.log(i) // 0,1,2,3,4
+}
+console.log(i) // i = 100
+
+
+// for (let i in Array/Object/String) {Array/Object/String[i]}
+//=> The for in loop iterates over a person object
+//=> Each iteration returns a key (x)
+//=> The key is used to access the value of the key
+//=> The value of the key is person[x]
+
+//=> Do not use for in over an Array if the index order is important.
+//=> It is better to use a for loop, a for of loop, or Array.forEach() when the order is important.
+
+let family = ['Suji', 'Minji', 'Lucky'];
+for (let i in family) {
+  console.log(family[i])
+}
+// Suji
+// Minji
+// Lucky
+
+
+const dog = {name: 'Lucky', age: 6, favorite: 'Apple'};
+for (const i in dog) {
+  console.log(i, dog[i]);
+}
+// name Lucky
+// age 6
+// favorite Apple
+
+
+// C.f) String
+let message = "Love";
+for (let i in message){
+  console.log(i);
+};
+// 0
+// 1
+// 2
+// 3
+
+
+// Array.forEach(function(value,idx,array) {});
+family.forEach(function (value, index, array) {
+  console.log(value);
+});
+// Suji
+// Minji
+// Lucky
+
+
+// for (let i of Array/String) {i}
+let family = ['Suji', 'Minji', 'Lucky'];
+for (let i of family) {
+  console.log(i);
+};
+// Suji
+// Minji
+// Lucky
+
+let message = "Love";
+for (let i of message){
+  console.log(i);
+};
+// L
+// o
+// v
+// e
+
+
+// while(condition)
+let i = 0
+while (i < 5) { // condition for break
+  console.log(i)
+  i++;
+}
+// 0
+// 1
+// 2
+// 3
+// 4
+
+
+// do {} while (condition)
+let i = 0
+do { 
+  console.log(i)
+  i++;
+}
+while (i < 5) // condition for break
+// 0
+// 1
+// 2
+// 3
+// 4
+-->
