@@ -345,6 +345,9 @@
 
     HINT: use a for loop
 -->
+
+
+<!--
 function printObject(obj) {
   // obj = Object.entries(obj)
   // for (let i = 0; i < obj.length; i++) {
@@ -366,3 +369,35 @@ printObject(bootcamp); // prints
 // name - App Academy
 // color - Red
 // population - 120
+-->
+
+<!--
+It is a common practice to declare objects with the const keyword.
+
+# 2 ways to access to Object Properties
+- objectName.propertyName
+- objectName["propertyName"]
+
+# 2 ways to access to Object Methods
+- objectName.methodName()
+- 
+
+# Object Methods
+Objects can also have methods.
+Methods are actions that can be performed on objects.
+Methods are stored in properties as function definitions.
+
+const dog = {
+  Name: "Lucky",
+  age : 6,
+  favorite : 'Apple',
+  Introduce : function() {
+    return this.Name + " likes " + this.favorite;
+  }
+};
+console.log(dog.Name) // Lucky
+console.log(dog['Name']) // Lucky
+console.log(dog.Introduce()) // Lucky likes Apple
+-->
+
+
