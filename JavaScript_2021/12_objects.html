@@ -392,12 +392,156 @@ const dog = {
   age : 6,
   favorite : 'Apple',
   Introduce : function() {
-    return this.Name + " likes " + this.favorite;
+    retur
+    
+    
+    n this.Name + " likes " + this.favorite;
   }
 };
 console.log(dog.Name) // Lucky
 console.log(dog['Name']) // Lucky
 console.log(dog.Introduce()) // Lucky likes Apple
+
+
+# Do Not Declare Strings, Numbers, and Booleans as Objects!
+They complicate your code and slow down execution speed.
+When a JavaScript variable is declared with the keyword "new", the variable is created as an object:
+x = new String();        // Declares x as a String object
+y = new Number();        // Declares y as a Number object
+z = new Boolean();       // Declares z as a Boolean object
+
+
+# Objects are Variables
+- Object values are written as name : value pairs (name and value separated by a colon).
+- It is a common practice to declare objects with the const keyword.
+
+let person = "John Doe";
+
+const person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+
+const person = {};
+person.firstName = "John";
+person.lastName = "Doe";
+person.age = 50;
+person.eyeColor = "blue";
+
+
+- Properties : firstName, lastName, age, eyeColor
+- Value : John, Doe, 50, blue
+
+
+-Objects written as name value pairs are similar to:
+    - Dictionaries in Python
+    - Hash tables in C
+    - Hash maps in Java
+
+
+# Object Methods
+Methods are actions that can be performed on objects.
+An object method is an object property containing a function definition.
+See fullName and function() below
+
+- Properties : firstName, lastName, age, eyeColor, fullName
+- Value : John, Doe, 50, blue, function() {return this.firstName + " " + this.lastName;}
+
+
+# JavaScript Objects are Mutable
+- Objects are mutable: They are addressed by reference, not by value.
+- The object x is not a copy of person. It is person. Both x and person are the same object.
+- Any changes to x will also change person, because x and person are the same object.
+
+
+const person = {
+  firstName:"John",
+  lastName:"Doe",
+  age:50, eyeColor:"blue"
+}
+
+const x = person;
+x.age = 10;      // Will change both x.age and person.age
+
+console.log(x.age) // 10
+console.log(person.age) // 10
+
+
+# loop : for (let i in Array/Object/String) {Array/Object/String[i]}
+- The for in loop iterates over a person object
+- Each iteration returns a key (x)
+- The key is used to access the value of the key
+- The value of the key is person[x]
+
+- Do not use for in over an Array if the index order is important.
+- It is better to use a for loop, a for of loop, or Array.forEach() when the order is important.
+
+const dog = {name: 'Lucky', age: 6, favorite: 'Apple'};
+for (const i in dog) {
+  console.log(i, dog[i]);
+}
+// name Lucky
+// age 6
+// favorite Apple
+
+
+# Delete
+
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 50,
+  eyeColor: "blue"
+};
+
+delete person.age;
+delete person["age"];
+
+console.log(person)
+// { firstName: 'John', lastName: 'Doe', eyeColor: 'blue' }
+
+
+# Nested Objects
+
+myObj = {
+  name:"John",
+  age:30,
+  cars: {
+    car1:"Ford",
+    car2:"BMW",
+    car3:"Fiat"
+  }
+}
+console.log(myObj.cars.car1) // "Ford"
+console.log(myObj.cars["car1"]) // 'Ford'
+
+
+# Nested Arrays and Objects
+
+const myObj = {
+  name: "John",
+  age: 30,
+  cars: [
+    {name:"Ford", "models":["Fiesta", "Focus", "Mustang"]},
+    {name:"BMW", "models":["320", "X3", "X5"]},
+    {name:"Fiat", "models":["500", "Panda"]}
+  ]
+}
+console.log(myObj.cars[0].models[2]) // Mustang
+
 -->
 
+
+<!--
+# JavaScript Primitives
+- A primitive value is a value that has no properties or methods.
+- A primitive data type is data that has a primitive value.
+- JavaScript defines 5 types of primitive data types:
+
+- Primitive values are immutable (they are hardcoded and therefore cannot be changed).
+- if x = 3.14, you can change the value of x. But you cannot change the value of 3.14.
+
+string
+number
+boolean
+null
+undefined
+-->
 
