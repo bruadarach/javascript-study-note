@@ -545,3 +545,611 @@ null
 undefined
 -->
 
+<!--
+# JavaScript Object Methods
+
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  id: 5566,
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+
+console.log(person.fullName) // [Function]
+console.log(person.fullName())
+  
+
+1. The this Keyword
+    : this is the person object that "owns" the fullName function.
+
+2. JavaScript Methods
+    - JS Methods are functions stored as object properties.
+    - JavaScript methods are actions that can be performed on objects.
+    - A JavaScript method is a property containing a function definition.
+
+3. Accessing Object Methods
+    - objectName.methodName()
+        - fullName() as a method of the person object
+        - fullName as a property.
+            - The fullName property will execute (as a function) when it is invoked with ().
+
+    - e.g) accesses the "fullName()" method of a "person" object:
+        - name = person.fullName(); // John Doe
+
+    - C.f) without (), it will return the function definition:
+        - name = person.fullName; // // [Function]
+    
+4. Adding a Method to an Object
+    - objectName.newMethodName = function () { return this.property1 + this.property2}
+
+    - e.g) person.name = function () {
+            return this.firstName + " " + this.lastName;
+            };
+
+5. Adding a method to an Object with Built-in Methods (.toUpperCase())
+    - e.g) const person = {
+                            firstName: "John",
+                            lastName: "Doe",
+                            id: 5566,
+                            fullName: function() {
+                                return this.firstName + " " + this.lastName;
+                            }
+                            };
+
+            person.name = function () {
+            return (this.firstName + " " + this.lastName).toUpperCase();
+            };
+
+            console.log(person)
+            console.log(person.name()) // JOHN DOE
+
+6. How to Display JavaScript Objects?
+ : Some common solutions to display JavaScript objects are:
+
+    e.g)
+            const person = {
+            firstName: "John",
+            lastName: "Doe",
+            id: 5566,
+            fullName: function() {
+                return this.firstName + " " + this.lastName;
+            }
+            };
+
+    - Displaying the Object Properties by name
+
+        console.log(person.firstName + ", " + person.lastName) // John, Doe
+
+    - Displaying the Object Properties in a loop
+
+        let txt = "";
+        for (let x in person) {
+        txt += person[x] + " ";
+        };
+        console.log(txt)
+        // John Doe 5566 function () {return this.firstName + " " + this.lastName;}
+
+    - Displaying the Object using Object.values()
+
+        myArray = Object.values(person)
+        console.log(myArray)
+        Object.values(person)
+        // [ 'John', 'Doe', 5566, [Function: fullName] ]
+
+    - Displaying the Object using JSON.stringify() - all JS String now
+        : JSON.stringify will not stringify "functions"!! 
+    
+        JSON.stringify(person)
+        // '{"firstName":"John","lastName":"Doe","id":5566}'
+
+
+        : This can be "fixed" if you convert the functions into strings before stringifying.
+
+        const dog = {
+        name: 'Lucky',
+        today: new Date(), 
+        age : function() {return 6;}}
+
+        console.log(dog)
+        // { name: 'Lucky',
+        //   today: 2021-07-17T09:17:37.077Z,
+        //   age: [Function] }
+
+        console.log(JSON.stringify(dog))
+        // {"name":"Lucky","today":"2021-07-17T09:18:07.368Z"}
+
+        dog.age = dog.age.toString();
+        console.log(JSON.stringify(dog))
+        // {"name":"Lucky","today":"2021-07-17T09:19:07.342Z","age":"function () {return 6;}"}
+-->
+
+
+<!--
+# JavaScript Object Accessors
+    : Getters and setters allow you to define Object Accessors (Computed Properties).
+
+1. JavaScript Getter (The get Keyword)
+    : This example uses a lang property to get the value of the language property.
+
+        const person = {
+        firstName: "John",
+        lastName: "Doe",
+        language: "en",
+        get lang() {
+            return this.language;
+        }
+        };
+
+        console.log(person.lang) // en
+        console.log(person.lang()) // TypeError: person.lang is not a function
+        console.log(person)
+        /* { firstName: 'John',
+        lastName: 'Doe',
+        language: 'en',
+        lang: [Getter] } */
+
+
+2. JavaScript Setter (The set Keyword)
+    : This example uses a lang property to set the value of the language property.
+
+        const person = {
+        firstName: "John",
+        lastName: "Doe",
+        language: "",
+        set lang(lang) {
+            this.language = lang;
+        }
+        };
+
+        // Set an object property using a setter:
+        person.lang = "en";
+
+        console.log(person)
+        // { firstName: 'John',
+        //   lastName: 'Doe',
+        //   language: 'en',
+        //   lang: [Setter] }
+-->
+
+
+<!--
+# JavaScript Object Constructors
+=> function & class in Python...
+
+1. How to create ? 
+
+- In the example below, function Person() is an object constructor function.
+- Objects of the same type are created by calling the constructor function with the new keyword:
+
+    function Person(first, last, age, eye) {
+    this.firstName = first;
+    this.lastName = last;
+    this.age = age;
+    this.eyeColor = eye;
+    }
+
+    const myFather = new Person("John", "Doe", 50, "blue");
+    const myMother = new Person("Sally", "Rally", 48, "green");
+
+    console.log(myFather) // Person { firstName: 'John', lastName: 'Doe', age: 50, eyeColor: 'blue' }
+
+
+- In a constructor function this does not have a value. 
+- It is a substitute for the new object. The value of this will become the new object when a new object is created.
+
+
+2. Adding a Property to an Object
+- objectName.propertyNAme = "value";
+
+    myFather.nationality = "English";
+    console.log(myFather)
+
+    // Person {
+    //   firstName: 'John',
+    //   lastName: 'Doe',
+    //   age: 50,
+    //   eyeColor: 'blue',
+    //   nationality: 'English' }
+
+
+3. Adding a Method to an Object
+
+    (1) Adding a new method to an existing object is easy! 
+        : The method will be added to myFather. Not to myMother. (Not to any other person objects).
+
+        (e.g)
+        myFather.name = function () {
+        return this.firstName + " " + this.lastName;
+        };
+
+    (2) Adding a Property to a Constructor
+        - You cannot add a new property to an object constructor the same way you add a new property to an existing object:
+
+        (e.g)
+        // Constructor function for Person objects
+        function Person(first, last, age, eye) {
+        this.firstName = first;
+        this.lastName = last;
+        this.age = age;
+        this.eyeColor = eye;
+        }
+
+        console.log(Person) // [Function: Person]
+
+        // You can NOT add a new property to a constructor function
+        Person.nationality = "English";
+
+        // Create 2 Person objects
+        const myFather = new Person("John", "Doe", 50, "blue");
+
+        console.log(Person) // { [Function: Person] nationality: 'English' }
+        console.log(myFather) // Person { firstName: 'John', lastName: 'Doe', age: 50, eyeColor: 'blue' }
+
+        const myMother = new Person("Sally", "Rally", 48, "green", "American");
+        console.log(myMother) 
+        // Person {
+        //   firstName: 'Sally',
+        //   lastName: 'Rally',
+        //   age: 48,
+        //   eyeColor: 'green' } 
+
+
+        - To add a new property to a constructor, you must add it to the constructor function:
+
+        (e.g)
+        function Person(first, last, age, eyecolor) {
+        this.firstName = first;
+        this.lastName = last;
+        this.age = age;
+        this.eyeColor = eyecolor;
+        this.nationality = "English";
+}
+
+    (3) Adding a Method to a Constructor
+        - Your constructor function can also define methods:    
+
+            (e.g) 
+            // Constructor function for Person objects
+            function Person(first, last, age, eye) {
+            this.firstName = first;
+            this.lastName = last;
+            this.age = age;
+            this.eyeColor = eye;
+            this.name = function() {
+                return this.firstName + " " + this.lastName
+            };
+            }
+
+            // Create a Person object
+            const myFather = new Person("John", "Doe", 50, "blue");
+
+            // Display full name
+            console.log(myFather.name()); // John Doe
+
+
+        - You can add a new method to an existing object.
+            (e.g)
+            // Constructor function for Person objects
+            function Person(first, last, age, eye) {
+            this.firstName = first;
+            this.lastName = last;
+            this.age = age;
+            this.eyeColor = eye;
+            }
+
+            // Create a Person object
+            const myFather = new Person("John", "Doe", 50, "blue");
+
+            myFather.name = function() {
+                return this.firstName + " " + this.lastName;
+            };
+            
+            // Display full name
+            console.log(myFather.name()); // John Doe
+
+        - You cannot add a new method to an object constructor the same way you add a new method to an existing object.
+        - Adding methods to an object constructor must be done inside the constructor function:
+
+            (e.g) ERROR CASE
+            // Constructor function for Person objects
+            function Person(first, last, age, eye) {
+            this.firstName = first;
+            this.lastName = last;
+            this.age = age;
+            this.eyeColor = eye;
+            }
+
+            Person.name = function() {
+                return this.firstName + " " + this.lastName;
+            };
+            // TypeError: Cannot assign to read only property 'name' of function 'function Person(first, last, age, eye)
+            
+
+            (e.g) RIGHT CASE
+            // Constructor function for Person objects
+            function Person(firstName,lastName,age,eyeColor) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.age = age;
+            this.eyeColor = eyeColor;
+            this.changeName = function (name) {
+                this.lastName = name;
+            }
+            }
+            // Create a Person object
+            const myMother = new Person("Sally","Rally",48,"green");
+
+            // Change last name
+            myMother.changeName("Doe");
+
+            // Display last name
+            console.log(myMother.lastName); // Doe
+
+(4) Built-in JavaScript Constructors
+    -  JavaScript has built-in constructors for native objects
+    -  The Math() object is not in the list. Math is a global object. The new keyword cannot be used on Math.
+ 
+        new String()    // A new String object
+        new Number()    // A new Number object
+        new Boolean()   // A new Boolean object
+        new Object()    // A new Object object
+        new Array()     // A new Array object
+        new RegExp()    // A new RegExp object
+        new Function()  // A new Function object
+        new Date()      // A new Date object
+
+    -  There is no need to use new String(), new Number(), new Boolean(), new Array(), and new RegExp() 
+    -  Primitive values are much faster, so there is no reason to create complex objects.
+        const x4 = new Object();   // A new Object object
+        const x7 = new Function(); // A new Function object
+        const x8 = new Date();     // A new Date object
+
+        (e.g)
+        Use string literals "" instead of new String().
+        Use number literals 50 instead of new Number().
+        Use boolean literals true / false instead of new Boolean().
+        Use object literals {} instead of new Object().
+        Use array literals [] instead of new Array().
+        Use pattern literals /()/ instead of new RegExp().
+        Use function expressions () {} instead of new Function().
+
+
+        let x = "";             // new primitive string, instead of // firstName = new String("John")
+        let x = 30;              // new primitive number, instead of // x = new Number(30)
+        let x = false;          // new primitive boolean, instead of // x = new Boolean(false)
+
+        const x = {};           // new Object object
+        const x = [];           // new Array object
+        const x = /()/          // new RegExp object
+        const x = function(){}; // new function
+
+(5) JavaScript Object Prototypes
+    - help to add new property and method to objects! 
+    - All JavaScript objects inherit properties and methods from a prototype.
+    - Object.prototype.propertyname = "value"
+
+    (e.g) add new property
+    function Person(first, last, age, eye) {
+    this.firstName = first;
+    this.lastName = last;
+    this.age = age;
+    this.eyeColor = eye;
+    }
+
+    Person.prototype.nationality = "English";
+
+    const myFather = new Person("John", "Doe", 50, "blue");
+    console.log(myFather.nationality) // English
+
+    (e.g) add new method
+    function Person(first, last, age, eye) {
+    this.firstName = first;
+    this.lastName = last;
+    this.age = age;
+    this.eyeColor = eye;
+    }
+
+    Person.prototype.name = function() {
+    return this.firstName + " " + this.lastName
+    };
+
+    const myFather = new Person("John", "Doe", 50, "blue");
+    console.log(myFather.name()); // John Doe 
+-->
+
+<!--
+# Object Reference 
+# JavaScript ES5 Object Methods
+ : ECMAScript 5 (2009) added a lot of new Object Methods to JavaScript.
+
+ (1) Managing Objects
+    // Create object with an existing object as prototype
+    Object.create()
+
+    // Adding or changing an object property
+    Object.defineProperty(object, property, descriptor)
+
+    // Adding or changing object properties
+    Object.defineProperties(object, descriptors)
+
+    // Accessing Properties
+    Object.getOwnPropertyDescriptor(object, property)
+
+    // Returns all properties as an array
+    Object.getOwnPropertyNames(object)
+
+    // Accessing the prototype
+    Object.getPrototypeOf(object)
+
+    // Returns enumerable properties as an array
+    Object.keys(object)
+
+(2) Protecting Objects
+    // Prevents adding properties to an object
+    Object.preventExtensions(object)
+
+    // Returns true if properties can be added to an object
+    Object.isExtensible(object)
+
+    // Prevents changes of object properties (not values)
+    Object.seal(object)
+
+    // Returns true if object is sealed
+    Object.isSealed(object)
+
+    // Prevents any changes to an object
+    Object.freeze(object)
+
+    // Returns true if object is frozen
+    Object.isFrozen(object)
+
+(3) Changing a Property Value
+    : Object.defineProperty(object, property, {value : value})
+
+    (e.g)
+    // Create an object:
+    const person = {
+    firstName: "John",
+    lastName: "Doe",
+    language: "EN" 
+    };
+
+    // Change a property
+    Object.defineProperty(person, "language", {value:"KR"})
+    console.log(person.language); // KR
+
+(4) Changing Meta Data
+    - ES5 allows the following property meta data to be changed:
+
+    (e.g)
+    writable : true      // Property value can be changed
+    enumerable : true    // Property can be enumerated
+    configurable : true  // Property can be reconfigured
+
+    writable : false     // Property value can not be changed
+    enumerable : false   // Property can be not enumerated
+    configurable : false // Property can be not reconfigured
+
+    - ES5 allows getters and setters to be changed:
+
+    (e.g)
+    // Defining a getter
+    get: function() { return language }
+    // Defining a setter
+    set: function(value) { language = value }
+
+    (e.g)
+    This example makes language read-only:
+    Object.defineProperty(person, "language", {writable:false});
+
+    (e.g)
+    This example makes language not enumerable:
+    Object.defineProperty(person, "language", {enumerable:false});
+
+
+(5) Listing All Properties
+    - This example list all properties of an object:
+
+    (e.g)
+    // Create an object:
+    const person = {
+    firstName: "John",
+    lastName: "Doe",
+    language: "EN"
+    }
+
+    // Change Property
+    Object.defineProperty(person, "language", {enumerable:false});
+
+    // Display Properties
+    console.log(Object.getOwnPropertyNames(person));
+    // [ 'firstName', 'lastName', 'language', 'smallObjId_hidden_' ]
+
+
+(6) Listing Enumerable Properties
+    - This example list only the enumerable properties of an object:
+
+    (e.g)
+    const person = {
+    firstName: "John",
+    lastName: "Doe",
+    language: "EN"
+    }
+
+    // Change Property
+    Object.defineProperty(person, "language", {enumerable:false});
+
+    // Display Properties
+    console.log(Object.keys(person));
+    // [ 'firstName', 'lastName' ]
+
+    for (let i in person) {
+    console.log(person[i])
+    }
+    // John
+    // Doe
+
+(6) Adding a Property
+    - This example adds a new property to an object:
+
+    (e.g)
+    // Create an object:
+    const person = {
+    firstName: "John",
+    lastName: "Doe",
+    language: "EN"
+    };
+
+    // Add a property
+    Object.defineProperty(person, "year", {value:"2008"})
+    console.log(person.year); // 2008
+
+(7) Adding Getters and Setters
+    - The Object.defineProperty() method can also be used to add Getters and Setters:
+
+    (e.g)
+    // Create an object:
+    const person = {firstName:"John", lastName:"Doe"};
+
+    // Define a getter
+    Object.defineProperty(person, "fullName", {
+    get: function () {return this.firstName + " " + this.lastName;}
+    });
+
+    // Display full name
+    console.log(person.fullName); // John Doe
+
+(8) A Counter Example
+
+    (e.g)
+    // Define an object
+    const obj = {counter:0};
+
+    // Define Setters and Getters
+    Object.defineProperty(obj, "reset", {
+    get : function () {this.counter = 0;}
+    });
+    Object.defineProperty(obj, "increment", {
+    get : function () {this.counter++;}
+    });
+    Object.defineProperty(obj, "decrement", {
+    get : function () {this.counter--;}
+    });
+    Object.defineProperty(obj, "add", {
+    set : function (value) {this.counter += value;}
+    });
+    Object.defineProperty(obj, "subtract", {
+    set : function (value) {this.counter -= value;}
+    });
+
+    // Play with counter:
+    console.log(obj.reset);
+    console.log(obj.add = 5); // 5
+    console.log(obj.subtract = 1); // 1
+    console.log(obj.increment); // undefined
+    console.log(obj.decrement); // undefined
+    console.log(obj.counter); // 4
+-->
+
