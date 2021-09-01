@@ -1,0 +1,80 @@
+<!--
+    라이브러리 
+    : 모듈과 비슷한 개념
+    : 모듈은 프로그램을 구성하는 작은 부품으로서의 로직을 의미한다면,
+    : 라이브러리는 자주 사용되는 로직을 재사용하기 편리하도록 잘 정리한 일련의 코드들의 집합을 의미한다면
+
+    (e.g) jQuery 제이쿼리
+        - jQuery 홈페이지에서 파일을 다운로드 받는다
+            - http://jquery.com
+        - jQuery 메뉴얼을 이용해서 사용법을 파악한다. 
+            - http://api.jquery.com         
+-->
+
+
+<!-- jQuery 제이쿼리로 버튼 누르면 텍스트 변환되는 기능 구현 (3줄) -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <script type="text/javascript" src="20_jquery.js"></script>
+</head>
+
+<body>
+    <ul id="list">
+        <li>empty</li>
+        <li>empty</li>
+        <li>empty</li>
+        <li>empty</li>
+    </ul>
+
+    <input type="button" value="execute" id="execute_btn">
+    <script type="text/javascript">
+        $('#execute_btn').click(function() {
+            $('#list li').text('coding is fun!') // jquery는 $ 씀 // id값이 list의 하위 li인 것들의 텍스트를 모두 coding is fun으로 바꾸기
+        })
+    </script>
+</body>
+
+</html>
+
+
+<!-- jQuery 제이쿼리를 사용하지 않고 위와 동일한 기능을 vanilla JS로 구현한 예제
+
+<!DOCTYPE html>
+<html>
+
+<body>
+    <ul id="list">
+        <li>empty</li>
+        <li>empty</li>
+        <li>empty</li>
+        <li>empty</li>
+    </ul>
+    <input id="execute_btn" type="button" value="execute" />
+    <script type="text/javascript">
+        function addEvent(target, eventType, eventHandler, useCapture) {
+            if (target.addEventListener) { // W3C DOM
+                target.addEventListener(eventType, eventHandler, useCapture ? useCapture : false);
+            } else if (target.attachEvent) { // IE DOM
+                var r = target.attachEvent("on" + eventType, eventHandler);
+            }
+        }
+
+        function clickHandler(event) {
+            var nav = document.getElementById('list');
+            for (var i = 0; i < nav.childNodes.length; i++) {
+                var child = nav.childNodes[i];
+                if (child.nodeType == 3)
+                    continue;
+                child.innerText = 'Coding everybody';
+            }
+        }
+        addEvent(document.getElementById('execute_btn'), 'click', clickHandler);
+    </script>
+</body>
+
+</html>
+-->

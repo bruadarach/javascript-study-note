@@ -1,0 +1,83 @@
+<!-- 객체 (iteration : list VS object)-->
+
+let arr = ['a','b','c'];
+
+for (let i = 0; i < arr.length; i++) {
+  console.log(arr[i]);
+  }
+// a
+// b
+// c 
+
+for (let char in arr) { // key(idx)
+  console.log(char)
+  }
+// 0
+// 1
+// 2 
+
+for (let char in arr) { // value
+  console.log(arr[char])
+  }
+// a
+// b
+// c
+
+// let obj = {'suji':34, 'minji': 33, 'lucky':6};
+
+// for (key in obj) {
+//   console.log(key);
+//   }
+// suji
+// minji
+// lucky
+
+
+<!-- 객체지향 프로그래밍 javascript object oriented programming 
+    : 하나의 객체안에 서로 관련성 있는 데이터와 함수(처리)를 하나의 그릇안에 그룹핑한, 카테고라이징한 것! 
+-->
+let obj = {
+  'age' : {'suji':34, 'minji': 33, 'lucky':6},
+  'show' : function() {
+    return 'Hello World';
+    }
+  }
+console.log(obj['age']['suji']) // 34
+console.log(obj['show']()) // Hello World
+
+<!-- 객체지향 프로그래밍 & 'this' : 함수가 속해있는 객체를 가리키는 변수! -->
+let obj = {
+  'age' : {'suji':34, 'minji': 33, 'lucky':6},
+  'show' : function() {
+    return this; // 'this' refers to 'obj'
+    }
+  }
+
+console.log(obj['show']()) 
+// { age: { suji: 34, minji: 33, lucky: 6 }, show: [Function] }
+
+
+let obj = {
+  'age' : {'suji':34, 'minji': 33, 'lucky':6},
+  'show' : function() {
+    return this.age;
+    }
+  }
+
+console.log(obj['show']()) // { suji: 34, minji: 33, lucky: 6 }
+
+
+let obj = {
+  'age' : {'suji':34, 'minji': 33, 'lucky':6},
+  'show' : function() {
+    for (let name in this.age) {
+      console.log(name, this.age[name]);
+    }
+  }
+}
+
+console.log(obj['show']())
+// suji 34
+// minji 33
+// lucky 6
+// undefined
