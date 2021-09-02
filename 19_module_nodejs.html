@@ -1,0 +1,33 @@
+<!--
+    1. 서버쪽 자바스크립트
+    2. 클라이언트 자바스크립트 : 웹브라우저에서 동작하는 자바스크립트 
+
+    * 호스트 환경에 따라서, 자바스크립트를 분할해서 읽어오는 메카니즘이 다름! 
+
+    * 이번 강의는, Node.js를 실행하는 방법을 다루지 않음
+      호스트 환경에 다라서 모듈을 로드하는 방법이 달라진다는 것을 보여주기 위한 예제일 뿐 
+-->
+
+
+
+<!-- node.circle.js (로드 될 대상 = 불려질 대상 = 모듈화된 파일 ) -->
+
+let PI = Math.PI;
+
+exports.area = function (r) {
+    return PI * r * r;
+};
+
+exports.circumference = function (r) {
+    return 2 * PI * r;
+}
+
+
+
+<!-- node.demo.js (로드의 주체 = 메인 파일) -->
+
+let circle = require('./node.circle.js');
+
+console.log('The area of a circle of radius 4 is '
+            + circle.area(4)) 
+

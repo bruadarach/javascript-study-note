@@ -1,0 +1,100 @@
+<!-- 시즌2 : 함수 
+    - 자바스크립트? 함수형 언어, 객체 지향을 독특한 관점에서 구현하고 있음 
+    - 함수? 모듈화의 근간, 정보 은닉, 객체 행위 지정 등등  
+
+    * 유의사항 * 
+    - 전역변수는 사용하지 않는 것이 좋다. 여러가지 이유로 그 값이 변경될 수 있기 때문이다. 
+    - 함수 안에서 전역변수를 사용하고 있는데, 누군가에 의해서 전역변수의 값이 달라졌다면 어떻게 될까? 함수의 동작도 달라지게 된다. 이것은 버그의 원인이 된다. 
+    - 또한 함수를 다른 에플리케이션에 이식하는데도 어려움을 초래한다. 
+    - 함수의 핵심은 로직의 재활용이라는 점을 상기하자. 
+    - 변수를 선언할 때는 꼭 var을 붙이는 것을 습관화해야 한다. 전역변수를 사용해야 하는 경우라면 그것을 사용하는 이유를 명확히 알고 있을 때 사용하도록 하자.
+
+    * 유효범위(scope) : 변수의 수명을 의미
+
+        - (e.g) 함수 밖에서 변수를 선언하면, 그 변수는 전역변수(global variable)이 된다. 
+                다시 말해서, 어떤 함수 안에서도 그 변수에 접근할 수 있다. 
+        
+        let vscope = 'global';
+        funciton fscope() {
+            alert(vscope);
+        }
+        fscope();
+
+
+        let vscope = 'global';
+        function fscope(){
+            return vscope;
+        }
+        console.log(fscope()); // global
+-->
+
+<!--
+        - (e.g) 지역변수의 유효범위는 함수 안이다. 
+                전역변수의 유효범위는 애플리케이션 전역인데, 같은 이름의 지역변수와 전역변수가 동시에 정의되어 있다면, 지역변수가 우선한다 
+
+        let vscope = 'global';
+        function fscope(){
+            let vscope = 'local';       // 차이! 
+            return vscope
+        }
+        console.log(fscope()); // local 
+        console.log(vscope); // global
+
+
+        - (e.g) 함수밖에서도 vscope의 값이 local인 이유는 무엇일까? 
+                그것은 함수 fscope의 지역변수를 선언할 때 let을 사용하지 않았기 때문이다. 
+                let을 사용하지 않은 지역변수는 전역변수가 된다.
+
+        let vscope = 'global';
+        function fscope(){
+            vscope = 'local';           // 차이! // let이 없으면 전역변수가 되버려! 
+            return vscope
+        }
+        console.log(fscope()); // local 
+        console.log(vscope); // local
+
+
+        let vscope = 'global';
+        function fscope(){
+            let vscope = 'local';
+            vscope = 'local'
+            return vscope   
+        }
+        console.log(fscope()); // local 
+        console.log(vscope); // global
+-->
+
+
+<!-- 유효범위의 필요성과 지역변수 사용의 필요성 
+    : 변수 i를 지역변수로 사요했을 대와 전역변수로 사용했을 때의 차이점
+    : 전역변수는 각기 다른 로직에서 사용하는 같은 이름의 변수값을 변경시켜서 의도하지 않은 문제를 발생시킨다.
+
+        - (e.g)
+
+        function a () {
+        let i = 0;
+        }
+
+        for (let i = 0; i<5; i++) {
+        a(); // call the function
+        console.log(i);
+        }
+        // 0
+        // 1
+        // 2
+        // 3
+        // 4
+
+
+        - (e.g) 결과 무한 반복! 무한루프에 빠지는 코드 ! 
+        
+        function a () {
+            i = 0;      // 차이 // let이 없으면 i는 전역변수가 됨
+        }
+
+        for (let i = 0; i<5; i++) {     // 여기 'i'는 전역변수 
+        a(); // call the function // i는 계속 0이 되어 5보다 커지지 않으므로 무한루프에 빠지게 됨 
+        console.log(i);
+        }
+
+-->

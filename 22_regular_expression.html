@@ -1,0 +1,128 @@
+<!--
+    정규표현식 
+        : 문자열에서 특정한 문자(혹은 패턴)를 찾아내는 도구
+
+    * 자바스크립트 내에서 사용하는 정규표현식 위주로 공부할 예정
+
+    * 참고 유용한 사이트
+    - 1. REGEXPER : https://regexper.com/#%2F%28%5Cw%2B%29%5Cs%28%5Cw%2B%29%2F
+    - 2. regexr : https://regexr.com/
+-->
+
+
+<!-- 패턴 만들기 방법 (찾고자 하는 정보 'a'를 'pattern'이라고 하는 변수에 저장함)
+    - 컴파일 : 패턴을 찾는 것 
+    - 실행 : 대상에 대한 작업을 하는 것 
+
+    => 일단, 정규표현식 객체를 만들어야 한다. 만드는 방법은 2가지이다. 
+
+    1. 정규표현식 리터럴 ('a' 를 찾으려면?)
+
+        let pattern = /a/
+
+    2. 정규표현식 객체 생성자
+
+        let pattern = new RegExp('a');
+-->
+
+
+<!-- 정규표현식 메소드 실행 (추출, test, 치환)
+    : 정규표현식을 컴파일해서 객체를 만들었다면, 이제 문자열에서 원하는 문자를 찾아내야 한다C.f
+
+
+    (1) RegExp.exec('검색하고자 하는 대상') 추출 
+
+        - (e.g) 
+        let pattern = /a/;
+        console.log(pattern.exec('abcde'));    // ["a"]
+        console.log(pattern.exec('bcde'));      // null
+
+        - (e.g) 
+        let pattern = /a./;    // .은 문자 1개라는 의미 
+        console.log(pattern.exec('abcde'));;    // ["ab"]
+
+        - (e.g) 
+        let pattern = /a../;    // .은 문자 1개라는 의미 
+        console.log(pattern.exec('abcde'));;    // ["abc"]
+    
+
+    (2) RegExp.test() 정보가 있는지 없는지 테스트 
+        - (e.g) 
+        let pattern = /a/;
+        pattern.test('abcde')    // true
+        pattern.test('bcde')    // false
+-->
+
+
+<!-- String과 정규표현식 
+
+    (1) String.match()
+        - (e.g)
+        let pattern = /a/;
+        let str = "abcdef";
+        console.log(str.match(pattern));   // ["a"]
+        console.log('bcdef'.match(pattern));    // null
+    
+    (2) String.relace(pattern, 'A');
+        - (e.g)
+        let pattern = /a/;
+        let str = 'abcde';
+        console.log(str.replace(pattern, 'A'))  // "Abcde"
+-->
+
+
+<!-- 정규표현식 옵션 (i,g)
+    : 정규표현식 패턴을 만들 때 옵션 설정 가능
+    : 옵션 설정에 따라서 검출되는 데이터가 달라진다
+
+    (1) i를 붙이면 대소문자를 구분하지 않는다 
+        - (e.g)
+        let xi = /a/;
+        "Abcde".match(xi);  // null
+        
+        let oi = /a/i;      // 'a' or 'A'
+        "Abcde".match(oi);  // ["A"]
+
+    (2) g를 붙이면 검색된 모든 결과를 리턴한다 (global)
+        - (e.g)
+        let xg = /a/;
+        "abcde".match(xg);  // ["a"]
+
+        - (e.g)
+        let og = /a/g;
+        "abcdea".match(og);  // ["a","a"]
+
+    (3) ig 같이 사용 가능
+        - (e.g)
+        let ig = /a/ig;     // a or A and repeated
+        "AabcdeAa".match(ig);  // ["A","a","A","a"]
+-->
+
+
+<!-- 정규표현식 캡쳐
+    : 괄호 안의 패턴을 마치 변수처럼 재사용 가능
+    : 이때 기호 $를 사용하는데, 아래 코드는 John과 Smith의 순서를 역전 시킴
+
+    - (e.g)
+    let pattern = /(\w+)\s(\w+)/;
+    let str = "coding fun"
+    let result = str.replace(pattern, "$2, $1"); // 패턴에 해당되는 값을 (캡쳐한후 사용해서) ($2를 $1로) 뒤로 치환한다. //$2는 2번째 괄호 그룹 // $1은 1번째 괄호 그룹
+    console.log(result)     // 'fun, coding'
+-->
+
+
+<!-- 정규표현식 치환 
+
+    - (e.g) url을 link로 바꿔준다. 
+    urlPattern을 찾을때마다 2번째 인자로 전달된 함수가 replace라는 메소드 내부적으로 호툴이 되고, 
+    이때 자바스크립트는 호출된 시점에서 검색된 문자열 즉 url을 첫번째 인자로 전달하도록 약속이 되어 있음. 
+    그럼 그 인자를 받아서 어떠한 텍스트로 가공한 다음에 리턴을 해주면 오리지널 정보는 리턴해준 정보로 치환이 되고, 
+    그 작업이 다 끝나면 최종적을 변경된 내용을 문자열로 리턴해준다. 
+    
+    let urlPattern = /\b(?:https?):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*/gim;
+    let content = '생활코딩 : http://opentutorials.org/course/1 입니다. 네이버 : http://naver.com 입니다. ';
+    let result = content.replace(urlPattern, function(url){
+        return '<a href="'+url+'">'+url+'</a>';
+    });
+    console.log(result);    // '생활코딩 : <a href="http://opentutorials.org/course/1">http://opentutorials.org/course/1</a> 입니다. 네이버 : <a href="http://naver.com">http://naver.com</a> 입니다. '
+-->
