@@ -96,5 +96,105 @@
         a(); // call the function // i는 계속 0이 되어 5보다 커지지 않으므로 무한루프에 빠지게 됨 
         console.log(i);
         }
+-->
 
+
+<!-- 전역변수를 불가피하게 사용해야하는 경우   
+    : 하나의 객체를 (전역변수로) 만들고, 객체의 속성으로 (전역)변수를 관리하는 방법을 사용한다.
+
+        - (e.g) MYAPP이라는 변수 하나에, 필요한 전역 변수들을 넣음
+
+        let MYAPP = {}          // 전역변수, 객체임
+        MYAPP.calculator = {    // 객체에 calculator라는 속성(=객체 안에 들어있는 변수)을 (다시 객체로) 줌
+            'left' : null,      // null = 아직 값을 지정하지 않았다는 의미
+            'right' : null
+        }
+
+        MYAPP.coordinate = {
+            'left' : null,      // left와 right는 위와 스펠링이 같지만, 속성이 
+            'right' : null
+        }
+
+        MYAPP.calculator.left = 10;
+        MYAPP.calculator.right = 20;
+
+        function sum() {
+            return MYAPP.calculator.left + MYAPP.calculator.right;
+        }
+
+        console.log(sum()); // 30
+
+
+    * 만약 전역변수를 사용하고 싶지 않다면? 
+    : 익명함수를 호출함으로서 이러한 목적을 달성할 수 있음! 
+    : MYAPP은 전역변수가 아니라, 함수(function) 안에 지역변수가 된 것임
+    : 익명함수는 모듈화 기법으로 제이쿼리나 자바스크립트 라이브러리에서 자주 활용된대  
+    : 익명함수란? 이름이 없는 함수로, 즉시 실행이 필요할 경우 사용합니다.
+
+        (function () {
+            //logic
+        })();
+
+    - (e.g)
+
+    (function(){
+        var MYAPP = {}
+        MYAPP.calculator = {
+            'left' : null,
+            'right' : null
+        }
+        MYAPP.coordinate = {
+            'left' : null,
+            'right' : null
+        }
+        MYAPP.calculator.left = 10;
+        MYAPP.calculator.right = 20;
+        function sum(){
+            return MYAPP.calculator.left + MYAPP.calculator.right;
+        }
+        console.log(sum());
+    }())
+-->
+
+
+<!-- 유효범위의 대상 (함수) 
+    : 자바스크립트는 함수에 대한 유효범위만을 제공한다. 
+    : 많은 언어들이 블록 (대체로 {,})에 대한 유효범위를 제공하는 것돠 다른 점이다! 
+
+    - (e.g) 함수 중가로 안에서 선언된 변수만이 그 함수 안에서의 지역변수가 되는 것이고,
+            for문, if문 중가로 안에서 선언된 변수는, 지역변수로서의 의미를 갖지 않는다. 
+
+    - * var가 function-scoped로 hoisting이 되었다면
+      * let, const는 block-scoped단위로 hoisting이 일어남
+
+    - (e.g) name은 지역변수로 for 문 안에서 선언 되었는데 이를 for문 밖에서 호출하고 있기 때문에 에러 발생!  (=자바에서도 같은 에러 발생)
+    for (let i = 0 ; i < 1; i++) {
+        let name = "Suji";
+    }
+    console.log(name);
+
+    - (e.g) var로 선언하면 에러가 발생하지 않지만, 사용 비추e.g
+    for(var i = 0; i < 5; i++){
+        var name = 'Suji';
+    }
+    console.log(name);  // Suji
+-->
+
+<!-- 정적 유효범위 
+    : 자바스크립트는 함수가 선언된 시점에서의 유효범위를 갖는다.
+    : 이러한 유효범위의 방식을 정적 유효범위 (static scoping) 혹은 (lexical scoping)이라고 한다.
+
+    - (e.g) 사용될 때가 아니고, 정의될 때의 전역변수가 사용되게 된다 = 정적 유효범위, 어휘적 유효범위
+    let i = 5;  // 전역변수(global variable)
+
+    function a() {
+    let i = 10;
+    b();    // b가 정의되는 시점에서 변수를 바라보게 된다면, 정적 유효범위! 
+    }
+
+    function b() {
+    console.log(i);
+    }
+
+    a(); // 5
 -->
