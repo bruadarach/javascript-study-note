@@ -1,0 +1,136 @@
+<!-- 클로져 : 내부함수, 외부함수 
+    : 클로저는 내부함수가 외부함수의 맥락에 접근할 수 있는 것을 가르킨다.
+    : 클로저는 자바스크립트를 이용한 고난이도의 테크닉을 구사하는데 필수적인 개념으로 활용된다.
+    : (개인적인 생각) 클로저는 함수에서 기존값을 잊지않고 기억하기위해서 만들어진 개념
+
+    * (1) 내부함수
+        : 자바스크립트는 함수 안에서 또 다슨 함수를 선언할 수 있다.
+        : 함수 outter의 내부에는 함수 inner가 정의되어 있다.
+          함수 inner를 내부함수라고 한다. 
+        : 내부함수는 외부함수의 지역변수에 접근할 수 있다. 
+
+
+        - (e.g) 외부함수 outter과 내부함수 inner
+            function outter() {
+                function inner () {
+                    let title = 'fun coding';
+                    console.log(title);
+                }  
+                inner();
+            }
+
+            outter(); // fun coding
+
+
+        - (e.g) 내부함수는 외부함수의 지역변수에 접근할 수 있다.
+
+            function outter() {
+                let title = 'fun coding';
+                
+                function inner () {  
+                    console.log(title);
+                }  
+                inner();
+            }
+
+            outter(); // fun coding
+
+    * (2) 클로저
+        : 클로저는 내부함수(+ 내부함수의 외부함수 변수의 접근성??)와 밀접한 관계를 가지고 있는 주제임
+        : 내부함수는, 외부함수의 지역변수 title에 접근할 수 있는데,
+        : 외부함수의 실행이 끝나서 외부함수가 소멸된 이후에도 (after return) 내부함수가 외부함수의 변수에 접근할 수 있다. 
+        : 이러한 매커니즘을 클로저라고 란다. 
+
+        : 클로저란,
+            1. 내부함수가 외부함수의 지역변수에 접근 가능
+            2. 외부함수는, 외부함수의 지역변수를 사용하는 내부함수가 소멸될 때까지 소멸되지 않는 특성을 의미함
+
+        - (e.g)
+            function outter() {
+                let title = 'fun coding';
+                
+                return function() {  
+                    console.log(title); //      한마디로 저장할때, title 값까지 몽땅 저장해서 return한다 인듯 ㅎㅎ 
+                }  
+            }
+
+            let inner = outter();
+            // console.log(inner) // [Function] // 이름없는 함수가 변수에 담김 // 
+            inner(); // fun coding  // title 변수는 소멸되지 않았구나~! 
+
+    * (3) 클로저(의 좀 더 실용적인 사용) : private variable (비밀 변수? ㅎㅎ)
+
+        - private variable : 소프트웨어가 커지는 과정에서 어떠한 정보가 있을때 이걸 아무나 수정하느 것을 방지하는 것을 방지하는 것
+
+        - (e.g) 우리가 title이라고 하는 변수의 값을 private하게 비밀 변수로 묶어서 숨어 놓고,
+                그 변수의 값을 수정할 때는 set_title을 통해서만 수정할 수 있고, 
+                변수의 값을 가져올 때는 get_title을 통해서만 가져올 수 하면,
+                변수 title 데이터는 안전하게 저장되고 수정될 수 있다.  
+
+            function factory_movie(title) {         // factory_movie = 외부함수 
+                return {                            // 객체 리턴
+                    get_title: function () {        // get_title 메소드 = 내부함수 
+                        return title;               // 내부함수가, 외부함수의 인자/매게변수(지역변수로 사용됨) title을 사용 가능 
+                    },
+                    set_title: function (_title) {  // set_title 메소드 = 내부함수
+                        if(typeof _title === 'String'){
+                            title = _title;             // title은 내부변수를 가르키기 때문에 factory_movie(title)의 title값을 바꿈!! 
+                        } else {
+                            console.log('제목은 문자열이어야 합니다.');
+                        }
+                    }
+                }
+            }
+
+            let ghost = factory_movie('Ghost in the shell');
+            let matrix = factory_movie('Matrix');
+
+            console.log(ghost); // { get_title: [Function], set_title: [Function] }
+            console.log(matrix); // { get_title: [Function], set_title: [Function] }
+
+            console.log(ghost.get_title()); // Ghost in the shell
+            console.log(matrix.get_title()); // Matrix
+
+            ghost.set_title('공각기동대');
+
+            console.log(ghost.get_title()); // 공각기동대
+            console.log(matrix.get_title()); // Matrix
+}
+
+    * (4) 클로저의 응용 : 클로저 구현 과정에서 발생하기 쉬운 실수를 통해 이해를 높이자! 
+
+        - (e.g) var 안쓸꺼지만, 선생님이 이거로 설명해서 일단 써둠 ; let으로 하면 문제 없는 경우임 ; 최신 i값이 살아서 계속 영향을 주는 경우임 ㅡㅅㅡ 쓰지 마셈~
+            var arr = [];
+            for(var i = 0; i < 5; i++){
+                arr[i] = function(){
+                    return i;
+                }
+            }
+            for(var index in arr) {
+                console.log(arr[index]());
+            }
+            // 5
+            // 5
+            // 5
+            // 5
+            // 5
+
+        - (e.g) 그냥 let 쓰셈 - functino은 {}안에 관계된 모든 변수들을 어디에 위치하던 싹다 저장해서 통으로 넘긴다고 생각하면 됨
+            let arr = [];
+            for (let i = 0; i < 5; i++) {
+                arr[i] = function () {
+                    return i;
+                }
+            }
+            
+            for (let index in arr) {
+            console.log(arr[index]());
+            }
+            // 0
+            // 1
+            // 2
+            // 3
+            // 4
+
+
+-->

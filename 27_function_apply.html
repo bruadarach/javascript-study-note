@@ -1,0 +1,34 @@
+<!-- 함수의 호출 
+    : 자바스크립트의 유연함을 보여주는 사례. 난이도가 있는 테크닉 
+
+    (1) 함수를 호출하는 가장 기본적인 방법
+        - 함수를 객체라고 했다. 
+        - 객체는 속성들을 가지고 있다. 
+        - 속성의 값이 저장이 되어있다면 그것을 속성(property)라고 부른다.
+        - 그 속성에 함수가 들어있다면 그것을 메소드(method)라고 부른다.
+
+        - 아래 예제에서 함수 func는 Function이라는 객체의 인스턴스다. 
+        - 따라서 func는 객체 Function이 가지고 있는 메소드들을 상속하고 있다. 
+
+        function func(){    // func()라는 함수는 객체이기 때문에, 메소드를 갖고 있는데, 이것은 자바스크립트가 기본적으로 제공하는 내장된 메소드이자 내장된 객체이다.
+        }
+        func();
+
+    (2) 함수를 호출하는 다른 방법. func.apply(null, [오리지널 함수의 인자(들)])
+        * 함수의 내장(built-in) 메소드(apply, call)에 접근하는 방법 ? 이 메소드를 통해 우리가 정의한 func()를 호출하는 역할 !
+            - func.apply 
+            - func.call (이건 지금 안살펴 볼 예정)
+ㄴ
+        - (e.g)
+            function sum(arg1, arg2) {
+                return arg1+arg2;
+            }
+
+            console.log(sum(1,2)); // 3
+            console.log(sum.apply); // [Function: apply]
+            console.log(sum.apply(null,[1,2])) // 3
+
+        - 이렇게 사용하는 이유? 
+            : sum.apply(null,[1,2]) 이렇게 사용하려면 쓰는게 아님!!!
+            : null에 넣을 것이 있을 때 이렇게 사용하도록!!! 
+-->     
