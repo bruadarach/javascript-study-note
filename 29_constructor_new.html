@@ -1,0 +1,50 @@
+<!-- 객체지향 : 생성자와 new
+    - 자바스크립트 계열 언어는 prototype-based programming
+    - 따라서, 자바스크립트의 객체라는 개념은 상당히 햇갈릴 수 있음.
+      전통적인 함수형 언어를 그대로 갖고 있는 것이 아니라, 
+      객체지향 언어가 갖고 있는 문법을 비슷하게 사용하면서 함수형 언어의 특성을 갖고 있기 때문에 
+      기존의 객체지향 패러다임에 익숙한 사람에겐 대단히 혼란할 수 있음 ! 
+     
+    객체 : 서로 연관된 변수(property=속성)와 함수(method)를 그룹핑한 그릇   
+-->
+
+
+<!-- 객체 만드는 간단한 방법 1  -->
+let person = {}
+person.name = 'suji';                   // 프라퍼티(속성,변수)
+person.introduce = function() {         // 프라퍼티에 함수가 담겨 있으면 = 메서드
+  return 'My name is ' + this.name; 
+}
+console.log(person.introduce()); // My name is suji
+
+
+<!-- 객체 만드는 간단한 방법 2 : 객체에 응집되어 넣어보자, 가독성도 좋고, 내용이 중간에 끼여들어서 변조될 가능성도 적지? -->
+let person = {
+    'name' : 'suji',
+    'introduce' : function() {
+    return 'My name is ' + this.name;
+    }
+}
+console.log(person.introduce()); // My name is suji
+
+
+<!-- 같은 취지의 객체를 여러개 만든다면? 
+    - 중복 발생 : 가독성 덜어지고, 코드 양이 많아지고, 유지 보수가 어려워지고 있다는 증거
+    - *해결책 : 중복 제거 방법 => 생성자, new
+-->
+let person1 = {
+'name' : 'suji',
+'introduce' : function() {              // 메소드 중복
+  return 'My name is ' + this.name;
+  }
+}
+console.log(person1.introduce()); // My name is suji
+
+
+let person2 = {
+'name' : 'lucky',
+'introduce' : function() {              // 메소드 중복
+  return 'My name is ' + this.name;
+  }
+}
+console.log(person2.introduce()); // My name is lucky
