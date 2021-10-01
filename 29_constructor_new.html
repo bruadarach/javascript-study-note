@@ -48,3 +48,18 @@ let person2 = {
   }
 }
 console.log(person2.introduce()); // My name is lucky
+
+
+<!-- 생성자와 new
+    : 생성자 constructor는 "객체를 만드는 역할을 하는 함수"다. 
+    : 자바스크리트에서 함수가 차지하는 위상을 생성자가 잘 보여줌! 
+    : 자바스크립트에서 '함수'는 단순히 재사용 가능한 로직의 묶음이 아니라, "객체를 만드는 창조자"라고 할 수 있다. 
+-->
+
+function Person() {}
+
+let p0 = Person();
+console.log(p0) // undefined
+
+let p1 = new Person();
+console.log(p1) // Person {}
