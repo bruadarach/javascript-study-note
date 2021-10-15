@@ -59,7 +59,78 @@ console.log(person2.introduce()); // My name is lucky
 function Person() {}
 
 let p0 = Person();
-console.log(p0) // undefined
+console.log(p0) // undefined // because of nothing returned 
+
+let p1 = new Person();  // add 'new' // 앞에 new가 있으면 Person()를 '함수'라 하지 않고 비어있는 객체의 '생성자'라 부릅! // 비어있는 객체를 반환함
+console.log(p1) // Person {}  // 비어있는 객체가 생성됨
+
+let p2 = {}
+console.log(p2) // {} // p1은 p2로 객체를 만드는 것과 비슷함
+
+<!--
+  자바같은 언어에는 class가 있고 이 안에 생성자가 존재함. 즉 생성자는 클래스에 소속되어 있고 이 생성자를 호출하는 것을 통해 이 클래스의 인스턴스, 즉 객체를 만들어냄
+  그러나, 자바스크립트는 생성자가 어디에 소속되어 있지 않음. 그냥 생성자는 함수일 뿐. 그리고 이 함수에 new를 붙여 실행하면 이 것을 객체를 만드는 것임. 따라서, 클래스라는 객체가 자바스크립트에서는 존재하지 않음. 
+
+  결론: 자바스크립트는 함수에 new를 붙이면 그 리턴값은 객체가 된다!
+
+  생성자(constructor)는 객체를 만드는 역할을 하는 함수다. 자바스크립트에서 함수는 재사용 가능한 로직의 묶음이 아니라 객체를 만드는 창조자라고 할 수 있다. 
+  함수를 호출할 때 new을 붙이면 새로운 객체를 만든 후에 이를 리턴한다. 
+
+  C.f) 일반적인 객체지향 언어에서 생성자는 클래스의 소속이다. 
+       하지만 자바스크립트에서 객체를 만드는 주체는 함수다. 
+       함수에 new를 붙이는 것을 통해서 객체를 만들 수 있다는 점은 자바스크립트에서 함수의 위상을 암시하는 단서이면서 
+       또 자바스크립트가 추구하는 자유로움을 보여주는 사례라고 할 수 있다.
+-->
+
+<!-- 
+  아래 코드는 새로운 객체를 변수 p에 담았다. 
+-->
+function Person() {}
+
+let p = new Person();
+p. name = 'Suji';
+p.introduce = function() {
+  return 'My name is ' + this.name;
+}
+
+console.log(p.introduce()); // My name is Suji
+
+<!-- 여러사람을 위한 객체를 만든다면 아래와 같이 코드를 작성해야 할 것이다.
+     아래 코드는 별로 개선된 것이 없다
+-->
+function Person() {}
 
 let p1 = new Person();
-console.log(p1) // Person {}
+p1.name = 'Suji';
+p1.introduce = function() {
+  return 'My name is ' + this.name;
+}
+
+console.log(p1.introduce()); // My name is Suji
+
+let p2 = new Person();
+p2.name = 'Lucky';
+p2.introduce = function() {
+  return 'My name is ' + this.name;
+}
+
+console.log(p2.introduce()); // My name is Lucky
+
+
+<!-- 여러 사람을 위한 객체를 만들 때 초기화작업으로 코드의 재사용성을 높인다. 
+     생성자 내에서 이 객체의 프라퍼티를 정의하고 있다. 
+     생성자 함수와 일반함수를 구분하기 위해 첫 글자를 대문자로 표시한다. 
+-->
+
+function Person(name) {   // 일반함수가 아니라 생성자 함수 = 첫글자 대문자로! 
+  this.name = name;
+  this.introduce = function() {
+      return 'My name is ' + this.name;
+    }
+}
+
+let p1 = new Person('Suji');
+console.log(p1.introduce()); // My name is Suji
+
+let p2 = new Person('Lucky');
+console.log(p2.introduce()); // My name is Lucky
