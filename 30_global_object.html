@@ -1,0 +1,63 @@
+<!-- global object 전역객체 
+    - 전역객체는 특수한 객체임
+    - 모든 객체는 전역객체의 프라퍼티다. 
+-->
+
+function func(){
+    alert('Hello?');    
+}
+func(); // 경고창에 Hello?뜨고 undefined 리턴
+window.func();  // 경고창에 Hello?뜨고 undefined 리턴
+
+<!-- 위에 코드 해설
+    : func();와 window.func();는 모두 실행이 된다. 
+    : 모든 전역변수와 함수는 사실 window 객체의 프로퍼티다. 
+    : 객체를 명시하지 않으면 암시적으로 window의 프로퍼티로 간주된다. 
+
+    window.func(); 에서,
+ 
+    window : 객체
+    .func : 속성, 메서드
+    func() : ()는 함수
+
+    - 따라서, func()라는 함수는, window라는 객체의 메소드인 것임 
+    - 다만, 우리가 편의를 위해 window라는 전역객체를 앞에 생략해도 암시적(default로)으로 동작함. 
+    - 따라서, 자바스크립트에서 모든 함수 또 모든 변수는 그것이 전역함수, 전역 변수라고 할지라도 "사실은 window라고 하는 전역객체의 프라퍼티"라고 할 수 있다.
+    - 그런 점에서 자바스크립트 언어는 객체지향 언어다. 객체에 모든 것이 소속되어있기 때문이다.
+-->
+
+var o = {'func':function(){     // o라는 변수는 func라는 메소드를 갖고 있음
+    alert('Hello?');
+}}
+o.func();
+window.o.func();                // o는 window 객체의 프라퍼티임
+
+
+<!-- 전역객체 API 
+    - ECMAScript에서는 전역객체의 API를 정의해두었다. 
+    - 그 외의 API는 호스트 환경에서 필요에 따라서 추가로 정의하고 있다. 
+    - 이를테면 웹브라우저 자바스크립트에서는 alert()이라는 전역객체의 메소드가 존재하지만,
+    - 서버사이드 자바스크립트인 node.js에는 존재하지 않는다. 
+    
+    - 또한 전역객체의 이름도 호스트환경에 따라서 다른데, 
+    - 웹브라우저에서 전역객체는 window이지만 node.js에서는 global이다. 
+
+    - global은 특정한 객체에 속하지 않는 함수와 속성들이라고 함.
+    - API에는 String, Array, Number, Boolean, Math, Date, Global 이 있음
+-->
+
+<!-- 서버사이드 자바스크립트 node에서 실행한 화면 -->
+> var name = 'suji';
+undefined
+
+> name
+'suji'
+
+> global.name   // node에서는 global.이 전역객체로 작동하지만
+'suji'
+
+> window.name   // window는 작동 안함 (이유: window는 웹브라우저 자바스크립트에서 전역객체로 작동함)
+Uncaught ReferenceError: window is not defined
+
+> global.isNaN  // global 전역객체의 isNaN은 default methods 중 하나라고 보면 됨
+[Function: isNaN]

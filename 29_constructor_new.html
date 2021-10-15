@@ -80,6 +80,8 @@ console.log(p2) // {} // p1은 p2로 객체를 만드는 것과 비슷함
        하지만 자바스크립트에서 객체를 만드는 주체는 함수다. 
        함수에 new를 붙이는 것을 통해서 객체를 만들 수 있다는 점은 자바스크립트에서 함수의 위상을 암시하는 단서이면서 
        또 자바스크립트가 추구하는 자유로움을 보여주는 사례라고 할 수 있다.
+
+  (C.f) 2015년 ES6에서 클래스 선언이 추가 되었습니다! 2014년 강의에는 자바스크립트에는 클래스가 없다고 강의함.
 -->
 
 <!-- 
@@ -117,7 +119,7 @@ p2.introduce = function() {
 console.log(p2.introduce()); // My name is Lucky
 
 
-<!-- 여러 사람을 위한 객체를 만들 때 초기화작업으로 코드의 재사용성을 높인다. 
+<!-- 여러 사람을 위한 객체를 만들 때 초기화(init, initialize)작업으로 코드의 재사용성을 높인다. 
      생성자 내에서 이 객체의 프라퍼티를 정의하고 있다. 
      생성자 함수와 일반함수를 구분하기 위해 첫 글자를 대문자로 표시한다. 
 -->
@@ -131,6 +133,7 @@ function Person(name) {   // 일반함수가 아니라 생성자 함수 = 첫글
 
 let p1 = new Person('Suji');
 console.log(p1.introduce()); // My name is Suji
+console.log(p1.name); // Suji
 
 let p2 = new Person('Lucky');
 console.log(p2.introduce()); // My name is Lucky
