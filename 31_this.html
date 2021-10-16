@@ -1,0 +1,77 @@
+<!-- 함수와 메소드의 this 
+    : this는 함수 내에서 함수 호출 맥락을 의미한다. 
+    : 함수를 어떻게 호출하느냐에 따라서 this가 가리키는 대상이 달라진다. 
+    : 함수와 객체의 관계가 느슨한 자바스크립트에서 this는 이 둘을 연결시켜주는 실질적인 연결점의 역할을 한다.
+
+    : (기본) 함수 안에서 this는 그 함수가 소속되어있는 객체를 가리킨다! 
+-->
+
+
+<!-- (어느 객체에도 소속되어 있지 않은) 함수의 this 
+    - this는 전역객체인 window와 같다.
+    - 함수를 호출했을 때 this는 무엇을 가르키는지 살펴보자.
+
+    * window.func() === func().
+    * window(함수.func()앞) === this
+-->
+function func(){
+    if(window === this){
+        document.write("window === this");
+    }
+}
+func(); // window === this 출력
+
+
+<!-- 객체의 메소드의 호출
+    : 객체의 메소드에서 this는 객체와 같다. 
+    : 어떠한 객체{}안에서 메소드(function())를 호출하면, 그 메소드가 소속되어 있는 객체{}를 this로 우리는 접근할 수 있다. 자기 자신을 this로 접근할 수 있다!
+    : o === {func: function()}, o === this 는 같은소리다 이것이지 
+    : 따라서, {func: function()} === this. 객체 스스로를 this로 받을 수 있다는 소리임.
+
+    * o.func() === window.o.func()
+    * o(함수.func()앞) === this
+-->
+let o = {
+    func : function() {
+        if (o === this) {
+            document.write("o === this");
+        }
+    }
+}
+
+o.func(); // o === this 출력 
+
+// o라는 변수에 객체를 정의해서 할당함. 
+// 그 객체에는 func라는 프라퍼티가 있는데 함수이므로 메소드인 것임. 
+// 메소드를 호출하면 정의한 객체를 담고있는 변수 o와 메소드 안에서 this에 담긴 값이 정확하게 같은지를 확인. 같음. this는 객체 자기 자신임.
+
+
+<!-- 생성자와 this 
+    : 생성자안에서 this는 어떤 의미를 갖는가? 
+    : (기본) 함수 안에서 this는 그 함수가 소속되어있는 객체를 가리킨다! 
+
+    - 생성자 안에서 this는 그 생성자가 만든 객체를 가리킴. 
+-->
+
+let funcThis = "null";
+
+function Func() {
+  funcThis = this;
+}
+
+document.write(funcThis); // null
+document.write(Func()); // undefined
+document.write(funcThis); // [object Window]
+
+let o1 = Func();
+if(funcThis === window) {
+  document.write('window </br>'); // window
+} 
+
+let o2 = new Func();
+if(funcThis === o2) {
+  document.write('o2 </br>'); // o2
+} 
+
+document.write(o1) // undefined
+document.write(o2) // [object Object]
