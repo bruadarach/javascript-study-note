@@ -73,7 +73,14 @@ console.log(p3.design()); // Beuatiful!
 
 <!-- prototype 
     : protytype을 통해 상속함. 구체적인 수단인 prototype 
-    : 객체의 원형     
+    : 객체의 원형    
+
+    # 아래 예제에서는 prototype chain (Sub->Super->Ultra)를 확인 가능. 
+
+    - 객체 o에서 ultraProp를 찾는다.
+    - 없다면 Sub.prototype.ultraProp를 찾는다.
+    - 없다면 Super.prototype.ultraProp를 찾는다.
+    - 없다면 Ultra.prototype.ultraProp를 찾는다.
 -->
 function Ultra() {}
 Ultra.prototype.ultraProp = true;
@@ -96,3 +103,84 @@ func.prototype.name = 'Suji'    // 'Suji'
 let o = new func();             // undefined
 o                 // func {}
 o.name            // 'Suji'
+
+
+<!-- 위 코드 심화 -->
+function Ultra() {}
+Ultra.prototype.ultraProp = true;
+
+function Super() {}
+Super.prototype = new Ultra();
+
+function Sub() {}
+Sub.prototype = new Super();
+
+let o = new Sub();
+o.ultraProp = 1;                // 여기 추가
+console.log(o.ultraProp); // 1
+
+
+<!-- 위 코드 심화 -->
+function Ultra() {}
+Ultra.prototype.ultraProp = true; // 여기까지는 안오네
+
+function Super() {}
+Super.prototype = new Ultra();
+
+function Sub() {}
+Sub.prototype = new Super();
+Sub.prototype.ultraProp = 2;  // 여기 추가! // 여기서 반환해버리네
+
+let o = new Sub();
+console.log(o.ultraProp); // 2
+
+
+<!-- 위 코드 심화 -->
+function Ultra() {}
+Ultra.prototype.ultraProp = true;
+
+function Super() {}
+Super.prototype = new Ultra();
+
+function Sub() {}
+let s = new Super();  // 여기 추가
+s.ultraProp = 3;      // 여기 추가
+Sub.prototype = s;    // 여기 추가
+
+let o = new Sub();
+console.log(o.ultraProp); // 3
+
+
+<!-- 위 코드 심화 -->
+function Ultra() {}
+Ultra.prototype.ultraProp = true;
+
+function Super() {}
+let t = new Ultra();
+t.ultraProp = 4;
+Super.prototype = t;
+
+
+function Sub() {}
+let s = new Super();
+Sub.prototype = s;
+
+let o = new Sub();
+console.log(o.ultraProp); // 4
+
+
+<!-- 위 코드 심화 -->
+function Ultra() {}
+Ultra.prototype.ultraProp = true;
+
+function Super() {}
+let t = new Ultra();
+Super.prototype = t;
+
+
+function Sub() {}
+let s = new Super();
+Sub.prototype = s;
+
+let o = new Sub();
+console.log(o.ultraProp); // true
