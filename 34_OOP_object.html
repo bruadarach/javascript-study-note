@@ -12,10 +12,102 @@
 
 
 <!-- Object API 사용법 
-
     : .prototype이 Object. 다음에 중간에 있는 것과 없는 것의 차이는?
+    - 참고 레퍼런스 : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
+
         (e.g)
         - Object.keys()
-        - Object.prototype.toStirnt()
+            : 객체가 갖는 key값들을 리턴해주는 객체의 메소드
+
+            - Object.keys()로 하고 인자로 어떠한 값(arr)을 받아 처리함
+                : Object.keys = function{}
+                : Object.prototype.toString = function(){}
+
+        - Object.prototype.toStirng()
+            : 객체가 담고있는 값이 무엇인가를 사람이 보기좋게 출력해주는 메소드
+
+            - .prototype이 있는 것은 어떠한 객체를 만듬
+                : 어떠한 메소드가 프로토타입 소속이라는 것은? 
+                : 그 객체를 담고 있는 식별자 .toString()이라고 함. 
+                : 인자 값 따로 안받음.
+
+        - Specification / Browser Compatibility 확인하기
+            : 모든 브라우저에서 호환되고 있다면 더 안심하고 사용할 수 있겠지?!
 
 -->
+
+// Object.keys()
+let arr = ['a','b','c'];
+console.log(Object.keys(arr)) // [ '0', '1', '2' ]  
+
+let o = {'name':'Lucky', "age":6, "city":"Suwon"};
+console.log(o);;  // { name: 'Lucky', age: 6, city: 'Suwon' }
+console.log(Object.keys(o)); // [ 'name', 'age', 'city' ]
+
+// Object.prototype.toString()
+let obj = {};
+console.log(obj.toString()); // [object Object]
+
+let a = [1,2,3];
+console.log(a.toString()); // 1,2,3
+
+
+<!-- Object 확장 (1)
+    : 객체를 확장해서 어느 객체에서나 사용할 수 있는 메소드 만들기
+    : 그러나 위험.
+        - 이유: 모든 객체에 영향을 주기 때문임
+-->
+Object.prototype.contain = function(neddle) {
+    for(let name in this){  // this = function, o or a
+        if(this[name] === neddle){
+            return true;
+        }
+    }
+    return false;
+}
+
+let o = {'name': 'lucky', 'city': 'dongtan'};
+console.log(o.contain('lucky')); // true 
+console.log(o.contain('name')); // false
+
+let a = ['lucky','suji','apple'];
+console.log(a.contain('apple'));  // true
+console.log(a.contain('banana')); //false
+
+
+<!-- Object 확장의 위험 (2)
+    :객체를 확장해서 어느 객체에서나 사요할 수 있는 메소드 만들기
+-->
+Object.prototype.contain = function(neddle) {
+    for(let name in this){  // this = function, o or a
+        if(this[name] === neddle){
+            return true;
+        }
+    }
+    return false;
+}
+
+let o = {'name': 'lucky', 'city': 'dongtan'};
+console.log(o.contain('lucky')); // true 
+console.log(o.contain('name')); // false
+
+let a = ['lucky','suji','apple'];
+console.log(a.contain('apple'));  // true
+console.log(a.contain('banana')); //false
+
+console.log(a);
+console.log(o);
+for (let name in o){
+  console.log(o[name])
+}
+// lucky
+// dongtan
+// ƒ (neddle) {                           ////////=> 여기가 문제!!! 
+    for(let name in this){  // this = function, o or a
+        if(this[name] === neddle){
+            return true;
+        }
+    }
+    return false;
+}           
+
