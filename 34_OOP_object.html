@@ -97,17 +97,59 @@ console.log(a.contain('banana')); //false
 
 console.log(a);
 console.log(o);
+  
+
+<!-- 위 코드 문제점 : 
+    문제 : 객체와 배열을 저의하는 사람은 for in문을 동작시켰을 때 자신이 정의한 데이터가 열거될 것을 기대하지만 그렇게 실행이 안됨! 
+    이유 : object o에는 contain이라고 하는 메소드의 프라퍼디도 포함이 되게 되어서 이렇게 나타나는 것임
+
+    결론 : 따라서, 오브젝트에 메서드를 추가하는 행위는 신중하게 해야함. 공통로직의 최소단위에서 해야함. 
+-->
 for (let name in o){
   console.log(o[name])
 }
 // lucky
 // dongtan
 // ƒ (neddle) {                           ////////=> 여기가 문제!!! 
-    for(let name in this){  // this = function, o or a
-        if(this[name] === neddle){
-            return true;
-        }
-    }
-    return false;
-}           
+//    for(let name in this){  // this = function, o or a
+//       if(this[name] === neddle){
+//            return true;
+//       }
+//    }
+//    return false;
+//}
+
+for (let name in a){
+  console.log(name);
+}
+// 0
+// 1
+// 2
+// contain                                ////////=> 여기가 문제! 예기지 찮은 contain 반환
+
+
+<!-- 위 코드 해결책 Object.hasOwnProperty
+    : 객체Ojbect가 인자로 전달한 어떠한 값(name)을 자신의 프라퍼티로 갖고 있는가를 체크함
+    : contain은 부모로부터 상속받은 프라퍼티이기 떄문에 열거하면, hasOwnProperty는 객체에 직접적인 소유이냐 직접적으로 정의된 것이냐를 체크하는데 사용. 
+
+    : 따라서 for문으로 객체 돌려도 contain, function 열거 안됨.
+-->
+for (let name in a){
+  if(a.hasOwnProperty(name)){
+    console.log(name);
+  }
+}
+// 0
+// 1
+// 2
+
+for (let name in o){
+  if(o.hasOwnProperty(name)){
+    console.log(name);
+  }
+}
+// name
+// city
+
+
 
