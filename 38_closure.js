@@ -34,3 +34,63 @@ console.log(num1); // 1
 let num2 = 0;
 ++num2;
 console.log(num2); // 1
+
+/*
+// practical example (1) 
+<!DOCTYPE html>
+<html>
+  <body>
+  <button id="plus">+</button>
+  <p id="count">0</p>
+  <script>
+    let plusBtn = document.getElementById('plus');
+    let countTxt = document.getElementById('count');
+
+    let plus= (function () {
+      // 카운트 상태를 유지하기 위한 자유 변수
+      let count = 0;
+      // 클로저를 반환
+      return function () {
+        return count++;
+      };
+    }());
+
+    plusBtn.onclick = function () {
+      countTxt .innerHTML = plus();
+    };
+  </script>
+</body>
+</html>
+
+
+
+// practical example (2)
+<!DOCTYPE html>
+<html>
+<body>
+  <button class="toggle">toggle button</button>
+  <div class="txt">
+    <h1>toggle test</h1>
+  </div>
+
+  <script>
+    let txtField = document.querySelector('.txt');
+    let toggleBtn = document.querySelector('.toggle');
+
+    let toggle = (function () {
+      let isVisable = false;
+
+      // 1.클로저를 반환
+      return function () {
+        txtField .style.display = isVisable ? 'block' : 'none';
+        // 3. 상태 변경
+        isVisable = !isVisable;
+      };
+    })();
+
+    // 2. 이벤트 프로퍼티에 클로저를 할당
+    toggleBtn.onclick = toggle;
+  </script>
+</body>
+</html>
+*/
