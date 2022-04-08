@@ -1,3 +1,11 @@
+/*
+Lexical Scope
+: 함수와 변수가 선언된 위치를 기준으로 범위(Scope)가 정해진다. 
+
+Dynamic Scope
+: 함수와 변수가 호출된 시점을 기준으로 범위(Scope)가 정해진다. 
+*/
+
 function makeAdder(x) {
   return function (y) {
     return x + y;
