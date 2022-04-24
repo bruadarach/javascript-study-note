@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+    
+    <script>
+        /*  JavaScript is synchronous.
+            Execute the code block by order after hoisting. 
+            hoisting: var, function declaration  
+
+            자바스크립트는 동기적이다. 
+            - 동기적? 호이스팅된 이후, 코드는 작성한 순서에 맞춰 하나 하나씩 동기적으로 실행됨 
+            - 호이스팅: 변수, 함수 선언들이 자동으로 제일 위쪽으로 올라가는 것
+
+            - 비동기적? 언제 코드가 실행될 지 예측할 수 없는 것
+                - 예) setTimeout(타임핸들러 전달, 시간 지정): 지정한 시간이 지나면, 지정한 콜백함수를 호출
+            - 콜백함수
+                - Synchronous calback
+                - Asynchronous callback
+        */
+
+        // 동기적
+        console.log('1')
+        console.log('2')
+        console.log('3')
+
+       // 1
+       // 2
+       // 3
+
+        // 비동기적 실행방법 
+        console.log('1')
+        setTimeout( () => console.log('2'), 1000)
+        console.log('3')
+
+        // 1
+        // 3
+        // 2
+
+        // Synchronous calback -> printImmediately
+        console.log('1')
+        setTimeout( () => console.log('2'), 1000)
+        console.log('3')
+
+        function printImmediately(print) {
+            print();
+        }
+        printImmediately(() => console.log('hello'))
+        
+        // 1
+        // 3
+        // hello
+        // 2
+
+        // Synchronous calback -> printWithDelay
+        console.log('1')
+        setTimeout( () => console.log('2'), 1000)
+        console.log('3')
+
+        function printImmediately(print) {
+            print();
+        }
+        printImmediately(() => console.log('hello'))
+
+        function printWithDelay(print, timeout) {
+            setTimeout(print, timeout)
+        }
+        printWithDelay(()=>console.log('async callback'), 2000);
+
+        // 1
+        // 3
+        // hello
+        // 2
+        // asynch callbak
+
+        //=> 모든 함수의 선언은 호이스팅 되기 때문에, function 선언들이 제일 위로 올라가게 되고, 
+        //=> 동기적인 것들 즉각적으로 먼저 출력되고, 이후에 비동기적인 것들은 브라우저에 요청 뒤 나중에 실행됨
+    </script>
+    </body>
+</html>
