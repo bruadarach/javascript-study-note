@@ -3,8 +3,6 @@
     <head>
         <title></title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
     
@@ -80,6 +78,55 @@
 
         //=> 모든 함수의 선언은 호이스팅 되기 때문에, function 선언들이 제일 위로 올라가게 되고, 
         //=> 동기적인 것들 즉각적으로 먼저 출력되고, 이후에 비동기적인 것들은 브라우저에 요청 뒤 나중에 실행됨
+
+        
+        // callback hell example : 가독성, 디버깅, 유지보수 할때 문제
+        class UserStorage {
+            loginUser (id, password, onSuccess, onError){
+            setTimeout(()=>{
+                if(
+                (id === "suji") && (password === "lucky") ||
+                (id === "minji") && (password === "deoqua")
+                ){
+                onSuccess(id);
+                }else{
+                onError( new Error("not found"));
+                }
+            },2000);
+            }
+            
+            getRoles(user,onSuccess, onError){
+            setTimeout(()=>{
+                if(user === "suji"){
+                onSuccess({name : "suji", role: "software engineer"});
+                }else{
+                onError( new Error("no access"));
+                }
+            },1000);
+            }
+        }
+        
+        
+        const userStorage = new UserStorage();
+        const id = prompt("enter your id");
+        const password = prompt("enter your password");
+        
+        userStorage.loginUser(
+            id,
+            password,
+            (user)=>{
+            userStorage.getRoles(
+                user,
+                userWithRole=>{
+                alert(`Hello ${userWithRole.name}, you have a ${userWithRole.role} role`)
+                },
+                error=>{console.log(error);
+                }
+            )
+            },
+            (error)=>{console.log(error);
+            }
+        );
     </script>
     </body>
 </html>
