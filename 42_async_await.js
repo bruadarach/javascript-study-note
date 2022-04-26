@@ -55,15 +55,83 @@ async function fetchUser() {
     return "🍌";
   }
 
-
-/* await을 이용해 pickFruits() 함수를 리팩토링
+/* await을 사용하지 않은 코드 
 1.  getApple()로 사과를 받고
 2. getBanana()로 바나나를 받고,
 3. 최종적으로 🍎+🍌 사과+바나나를 반환 */
 
+async function getApple() {
+    await delay(2000);
+    return "🍎";
+  }
+  
+  async function getBanana() {
+    await delay(1000);
+    return "🍌";
+  }
+  
+  function pickFruits() {
+    return getApple().then((apple) => {
+      return getBanana().then((banana) => `${apple} + ${banana}`);
+    });
+  }
+
+pickFruits().then(console.log);
+
+
+/* await을 이용해 pickFruits() 함수를 리팩토링한 코드 
+1. apple이란 상수를 만들어서 getApple()이 끝날 때 까지 기다린 후 사과를 받기.
+2. 같은 방법으로 banana 상수를 만들어서 바나나를 받기.
+3. 그리고 apple + banana를 반환 */
+
 async function pickFruits() {
     const apple = await getApple();
     const banana = await getBanana();
-    return `${apple} + ${banana}`;
-    
+    return `${apple} + ${banana}`;  
 }
+
+pickFruits().then(console.log);
+
+/* 동시다발적으로 Promise를 실행
+- 사과, 바나나를 순서대로 기다리는 건 너무 비효율적
+- 둘이 동시에 진행
+
+1. applePromise, bananaPromise 상수에 각각 getXXX() 함수 넣기.
+2. 즉시 Promise 객체가 생성되고, Promise 안의 코드가 진행됨. 
+3. apple과 banana에 동기화.
+4. Promise가 다 끝날 때 까지 await 하기
+5. 두개 합치기 */ 
+
+async function pickFruits() {
+    const applePromise = getApple();
+    const bananaPromise = getBanana();
+    // 상수에 할당해서 프로미스 두개 바로 만들게해서 프로미스 안의 코드 진행시키고 
+    const apple = await applePromise;
+    const banana = await bananaPromise;
+    return `${apple} + ${banana}`;   
+}
+
+pickFruits().then(console.log);
+
+
+// Promise API
+// Promise.all - 동시다발적(병렬적)으로 Promise를 실행
+// Promise.all( [ a, b ] ) : a,b 값이 다 모일 때까지 기다림
+function pickAllFruits() {
+    //Promise.all 배열에 전달된 프로미스 값이 다 모일 때까지 존버함
+    return Promise.all([getApple(), getBanana()])
+    .then(fruits => fruits.join(" + "));
+}
+pickAllFruits().then(console.log)
+// 결과값 : 🍎+🍌
+
+
+// Promise.race - 가장 빨리 리턴된 값만 전달
+// Promise.race( [ a, b ] ) : 배열에 전달된 프로미스 중에서 가장 빨리 리턴된 값만 전달됨
+function pickOnlyOne() {
+    //Promise.race : 배열에서 전달된 프로미스 중에서 가장 빨리 리턴된 값만 전달됨
+    return Promise.race([getApple(), getBanana()])
+}
+//참고로 바나나의 딜레이는 1초 사과의 딜레이는 2초다.
+pickOnlyOne().then(console.log) 
+//결과값 : 🍌
