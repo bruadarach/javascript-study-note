@@ -1,3 +1,15 @@
+/* 클로저(Closure) 
+
+클로저 & 클로저 함수란?
+
+"클로저" : 함수와 함수가 선언된 어휘적 환경(lexical environment)의 조합을 말합니다.
+이 어휘적 환경은 클로저가 생성된 시점의 유효 범위 내에 있는 모든 지역 변수로 구성이 됩니다.
+자바스크립트는 함수가 호출되는 환경과 별개로, 기존에 선언되어 있던 환경인 '어휘적 환경'을 기준으로 변수를 조회하려고 합니다.
+
+"클로저 함수" :이러한 이유로 "외부 함수의 변수에 접근할 수 있는 내부 함수"를 클로저 함수라고 합니다.
+
+*/
+
 /*
 Lexical Scope
 : 함수와 변수가 선언된 위치를 기준으로 범위(Scope)가 정해진다. 
@@ -126,3 +138,27 @@ document.write("result : " + sum(1, 2, 3, 4));
 // 2 : 3<br />
 // 3 : 4<br />
 // result : 10
+
+
+/* 클로저 모듈 패턴 : 함수 여러개를 포함한 객체 
+
+const makeCounter = () => {
+  let value = 0;
+  return {
+    increase: () => {return value=value+1},
+    decrease: () => {return value=value-1},
+    getValue: () => {return value}
+  }
+}
+ 
+const counter1 = makeCounter();
+counter1 // {increase: ƒ, decrease: ƒ, getValue: ƒ}
+
+console.log(counter1.increase()); // 1
+console.log(counter1.increase()); // 2
+console.log(counter1.decrease()); // 1
+console.log(counter1.getValue()); // 1
+
+*/
+
+
