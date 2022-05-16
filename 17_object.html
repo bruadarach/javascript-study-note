@@ -1,5 +1,5 @@
 <!-- 객체 (iteration : list VS object)-->
-
+<script>
 let arr = ['a','b','c'];
 
 for (let i = 0; i < arr.length; i++) {
@@ -33,9 +33,9 @@ for (let char in arr) { // value
 // lucky
 
 
-<!-- 객체지향 프로그래밍 javascript object oriented programming 
+/* 객체지향 프로그래밍 javascript object oriented programming 
     : 하나의 객체안에 서로 관련성 있는 데이터와 함수(처리)를 하나의 그릇안에 그룹핑한, 카테고라이징한 것! 
--->
+*/
 let obj = {
   'age' : {'suji':34, 'minji': 33, 'lucky':6},
   'show' : function() {
@@ -81,3 +81,60 @@ console.log(obj['show']())
 // minji 33
 // lucky 6
 // undefined
+
+
+/* 객체의 복사
+
+  1. pass by reference: pass by reference, thereby affecting the original data
+  2. Object.Assign(): pass by value for primitive variables + pass by reference for reference variables
+*/
+
+const obj = {
+  mastermind: 'Joker',
+  henchwoman: 'Harley', // 'Adam West' // 'Harley'
+  relations: ['Anarky', 'Duela Dent', 'Lucy'],
+  twins: {
+   'Jared Leto': 'Suicide Squad',
+    'Joaquin Phoenix': 'Joker',
+    'Heath Ledger': 'The Dark Knight',
+    'Jack Nicholson': 'Tim Burton Batman',
+  },
+};
+const copiedObj = Object.assign({}, obj);
+copiedObj === obj // false
+
+copiedObj.mastermind = 'James Wood';
+obj.mastermind // 'Joker'
+
+// reference variable은 주소 복사 
+delete obj.twins['Jared Leto'];
+'Jared Leto' in obj.twins // false
+'Jared Leto' in copiedObj.twins // false
+
+
+/* Object: this 
+
+  - 화살표 함수에서의 this는 자신을 감싼 정적 범위(lexical context)입니다. 
+  (전역에서는 전역 객체를 가리킵니다.)
+  - 일반 변수 조회 규칙(normal variable lookup rules)을 따르기 때문에, 
+  현재 범위에서 존재하지 않는 this를 찾을 때, 화살표 함수 바로 바깥 범위에서 this를 찾습니다.
+  - 따라서, 화살표 함수를 사용할 때, 이러한 특이점을 생각하고 사용해야 합니다.
+*/
+
+const megalomaniac = { // {키:값}
+      mastermind: 'Joker',
+      henchwoman: 'Harley',
+      getMembers: function () {
+        return [this.mastermind, this.henchwoman];
+      },
+      relations: ['Anarky', 'Duela Dent', 'Lucy'],
+      twins: {
+        'Jared Leto': 'Suicide Squad',
+        'Joaquin Phoenix': 'Joker',
+        'Heath Ledger': 'The Dark Knight',
+        'Jack Nicholson': 'Tim Burton Batman',
+      },
+    };
+
+megalomaniac.getMembers() // ['Joker', 'Harley']
+</script>
