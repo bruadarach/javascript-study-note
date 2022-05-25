@@ -137,3 +137,62 @@ console.log(p1.name); // Suji
 
 let p2 = new Person('Lucky');
 console.log(p2.introduce()); // My name is Lucky
+
+
+
+
+<!-- ES5 클래스 작성 문법 (function, prototype, this) -->
+function Car(brand, name, color) {
+	this.brand = brand;
+    this.name = name;
+    this.color = color;
+  
+  	Car.prototype.refuel = function () {
+    // 연료 공급을 구현하는 코드
+    }
+  	Car.prototype.drive = function () {
+    // 운전을 구현하는 코드
+    }
+}
+
+<!-- ES6 클래스 작성 문법 (class키워드, constructor, this) -->
+class Car{
+	constructor(brand,name,color) {
+    	this.brand = brand;
+      	this.name = name;
+      	this.color = color;
+    }
+  	
+  	refuel() {}
+  	drive() {}
+}
+
+<!-- new 키워드로 생성자 함수를 호출 :
+new 키워드가 실행 → 생성자 함수가 실행 → 변수에 클래스의 설계를 가진 인스턴스가 할당됨 -->
+class Car{
+	constructor(brand,name,color) {
+    	this.brand = brand;
+      	this.name = name;
+      	this.color = color;
+    }
+  	
+  	refuel() {
+			console.log(this.name + '님 연료가 부족합니다.');
+		}
+  	drive() {
+			console.log(this.name + '가 운전을 시작합니다.');
+		}
+}
+
+let avante = new Car('hyundai', 'avante', 'black')
+avante.color; //'black'
+avante.drive(); // 아반떼가 운전을 시작합니다.
+
+<!-- Hoisting
+
+< 함수 선언 VS. 클래스 선언 차이점 >
+
+함수의 경우 정의하기 하기 전에 호출 가능
+클래스는 반드시 정의한 뒤에 호출 가능
+-->
+
