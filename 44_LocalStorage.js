@@ -57,6 +57,9 @@ const arr = [1, 2, 3];
 const objString = JSON.stringify(obj);
 const arrString = JSON.stringify(arr);
 
+objString // '{"name":"anna","age":20}'
+arrString // '[1,2,3]'
+
 // 저장: setItem
 window.localStorage.setItem('person', objString);
 window.localStorage.setItem('nums', arrString);
