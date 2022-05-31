@@ -170,4 +170,130 @@ userStorage
 .then(user => alert(`Hello ${user.name}, you have a ${user.role} role`))
 .catch(console.log);
 
+/* 추가 공부 */
+function delay(sec, callback) {
+    setTimeout(() => {
+        callback(new Date().toISOString())
+    }, sec*1000);
+};
+
+/* 1초 간격으로 잘 찍힘 */
+// 1 '2022-05-31T01:42:41.292Z'
+// 2 '2022-05-31T01:42:42.296Z'
+// 3 '2022-05-31T01:42:43.300Z'
+
+
+// 그런데 만약에 2번째 delay의 콘솔로그fmf 3번째 delay의 뒤에 위치한다면,
+// 코드를 읽을 때, 어느 것이 먼저 실행되는지 단번에 알아차리기가 어려워, 가독성이 좋지 않다.
+function delay(sec, callback) {
+    setTimeout(() => {
+        callback(new Date().toISOString())
+    }, sec*1000);
+};
+
+delay(1, (result) => {
+    console.log(1,result);
+    
+    delay(5, (result) => {
+
+        delay(1, (result) => {
+            console.log(3,result)
+        })
+     console.log(2,result);   
+    })
+})
+
+/* 가독성 좋게 Promise 사용해서 바꿔보자 */
+function delayP(sec) {
+    return new Promise((resolve,reject) => {
+        setTimeout(() => {
+            resolve(new Date().toISOString())
+        }, sec*1000);
+    });
+}
+
+delayP(1).then((result)=>{
+    console.log(1,result);
+});
+
+/* Promise Chaining을 해보자 */
+delayP(1).then((result)=>{
+    console.log(1,result);
+    // return에 다음 아이 추가해주세요!
+    return delayP(1);
+}).then((result)=>{
+    console.log(2,result);
+    // return에 다음 아이 추가해주세요!
+    return delayP(1);
+}).then((result)=>{
+    console.log(3,result);
+});
+/* 1초 간격으로 잘 찍힘 */
+// 1 '2022-05-31T01:42:41.292Z'
+// 2 '2022-05-31T01:42:42.296Z'
+// 3 '2022-05-31T01:42:43.300Z'
+
+
+/* 만약에 마지막 아이 다음에 then(result)에는 뭐가 담기나요? 
+마지막 3번째 로그가 찍힘과 "동시에" 4번째 콘솔로그(result)가 찍히는데 "undefined"입니다.  
+*/
+
+delayP(1).then((result)=>{
+    console.log(1,result);
+    return delayP(1);
+}).then((result)=>{
+    console.log(2,result);
+    return delayP(1);
+}).then((result)=>{
+    console.log(3,result);
+    // 여기서 아무것도 return 하지 않을 경우!
+}).then((result)=>{ // then의 result값은 resolve가 된 promise일테고, 아무것도 리턴안했읕테니 바로 실행됨. 
+    console.log(result); // resolve된 값이 없으므로, 결과값은 undefined 없는 것입니다.
+});
+
+// 1 '2022-05-31T01:57:32.549Z'
+// 2 '2022-05-31T01:57:33.553Z'
+// 3 '2022-05-31T01:57:34.557Z'
+// undefined
+
+delayP(1).then((result)=>{
+    console.log(1,result);
+    return delayP(1);
+}).then((result)=>{
+    console.log(2,result);
+    return delayP(1);
+}).then((result)=>{
+    console.log(3,result);
+    // 여기서 return을 해줄 경우!
+    return 'WOW' // 이 리턴값은 promise의 resolve값으로 업데이트 됨
+}).then((result)=>{ // then의 result값은 resolve가 된 promise일테고, "비동기 연산인 Promise를" 리턴하지 않았기 때문에 "바로 실행됨" 
+    console.log(result); // resolve된 값 : Wow
+});
+// 1 '2022-05-31T01:57:32.549Z'
+// 2 '2022-05-31T01:57:33.553Z'
+// 3 '2022-05-31T01:57:34.557Z'
+// 'WOW'
+
+
+/* then() 안에서 undefined가 리턴되어도 이후의 then 체이닝이 계속 이루어지는건가요 ? YES! 이유: then은 promise를 리턴하기 때문에 ㅎ */
+delayP(1).then((result)=>{
+    console.log(1,result);
+    return delayP(1);
+}).then((result)=>{
+    console.log(2,result);
+    return delayP(1);
+}).then((result)=>{
+    console.log(3,result);
+    // 여기서 아무것도 return 하지 않을 경우!
+}).then((result)=>{ // then의 result값은 resolve가 된 promise일테고, "비동기 연산인 Promise를" 리턴하지 않았기 때문에 "바로 실행됨" 
+    console.log(result); // resolve된 값이 없으므로, 결과값은 undefined 없는 것입니다.
+}).then((result)=>{ // then의 result값은 resolve가 된 promise일테고, "비동기 연산인 Promise를" 리턴하지 않았기 때문에 "바로 실행됨" 
+    console.log(result); // resolve된 값이 없으므로, 결과값은 undefined 없는 것입니다.
+})
+
+// 1'2022-05-31T02:50:12.141Z'
+// 2 '2022-05-31T02:50:13.142Z'
+// 3 '2022-05-31T02:50:14.146Z'
+// undefined
+// undefined
 
