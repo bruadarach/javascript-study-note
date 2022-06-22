@@ -180,3 +180,74 @@ class HoneyMakerBee extends Bee {
     this.honeyPot--;
   }
 }
+
+
+/* ES6 문법 - class */
+
+// 부모 클래스
+class Person{
+  constructor(name, age){ // 프로퍼티 추가
+    this.name = "Sujeong";
+    this.age = 20;
+  }
+
+	// 메소드 추가
+  hello(){
+    console.log("Hello",this.name);
+    console.log("You are",this.age,"years old");
+  }
+};
+ 
+// 자식 클래스
+class Student extends Person{
+  constructor(name, age, gpa){ // 프로퍼티 추가
+    super(name, age); // 부모 클래스의 프로퍼티 상속
+
+    this.gpa = 90; // 자식 클래스에 새로운 프로퍼티 추가
+  }
+	
+	// 메소드 추가 : 메소드 오버라이딩
+  welcome() {
+    super.hello(); // 부모 클래스의 메소드 상속
+    console.log("Your gpa is", this.gpa);
+  }
+};
+
+
+/* ES5 문법 - Pseudoclassical */
+
+// 부모 클래스
+function Person(name, age) { // 프로퍼티 추가
+    this.name = "Sujeong";
+    this.age = 20;
+};
+
+// 메소드 추가
+Person.prototype.hello = function () {
+  console.log("Hello",this.name);
+  console.log("You are",this.age,"years old");
+}
+
+// 자식 클래스
+function Student(name, age, gpa) {// 프로퍼티
+    Person.call(this, name, age); // 부모 클래스의 프로퍼티 상속
+
+    this.gpa = 90; // 자식 클래스에 새로운 프로퍼티 추가
+};
+	
+Student.prototype = Object.create(Person.prototype); // 부모 클래스의 상속하기 // MyChild.prototype = new Person();
+Student.prototype.constructor = Student; // 생성자 설정
+
+/* 아래 코드도 이 대체 가능 => Student.prototype.constructor = Student; */
+// Object.defineProperty(Student.prototype, 'constructor', { 
+//   value: Student, 
+//   enumerable: false, // so that it does not appear in 'for in' loop
+//   writable: true 
+// });
+
+// 메소드 추가 : 메소드 오버라이딩
+Student.prototype.welcome = function () { // welcome() 메서드를 추가한다.
+  Person.prototype.hello.call(this); // call() 을 이용해 부모 클래스의 hello()메서드를 호출한다.
+  console.log("Your gpa is", this.gpa); // 확장하려는 기능을 추가한다.
+};
+
