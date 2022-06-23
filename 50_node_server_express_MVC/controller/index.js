@@ -6,8 +6,8 @@ const handleRequestBody = (req, res) => {
     return res.status(400).send("no request body");
   }
 
-  const { title, author, bodyHTML } = req.body;
-  if (!title && !author && !bodyHTML) {
+  const {username, email, phone } = req.body;
+  if (!username && !email && !phone) {
     return res.status(400).send("bad request")
   }
   return true;
@@ -32,13 +32,13 @@ const membersController = {
   },
 
   createMember: (req, res) => {
-    const { title, author, bodyHTML, avatarUrl } = req.body;
+    const {username, phone, email, country } = req.body;
     console.log(req.body, req.url)
     if (handleRequestBody(req, res) !== true) return;
     const id = parseInt(Math.random() * 10000)
     const newmember = {
       id,
-      name,
+      username,
       phone,
       email,
       country
