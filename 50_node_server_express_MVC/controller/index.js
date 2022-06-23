@@ -1,6 +1,5 @@
 const { members } = require("../repository/members");
 const membersData = members;
-let member = [];
 
 const handleRequestBody = (req, res) => {
   if (!req.body) {
@@ -15,6 +14,7 @@ const handleRequestBody = (req, res) => {
 }
 
 const membersController = {
+  
   findAll: (req, res) => {
     return res.status(200).json(membersData);
   },
@@ -32,7 +32,6 @@ const membersController = {
   },
 
   createMember: (req, res) => {
-
     const { title, author, bodyHTML, avatarUrl } = req.body;
     console.log(req.body, req.url)
     if (handleRequestBody(req, res) !== true) return;

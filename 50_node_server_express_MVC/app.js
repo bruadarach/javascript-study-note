@@ -13,7 +13,8 @@ const membersRouter = require('./router/members');
 app.use('/members', membersRouter)
 
 app.get('/', (req, res) => {
-  res.sendStatus(200);
+  //res.sendStatus(200);
+  res.status(200).send('Welcome!')
 });
 
 app.use((req, res, next) => {
